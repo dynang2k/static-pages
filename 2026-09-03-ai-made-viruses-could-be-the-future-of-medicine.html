@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-made viruses could be the future of medicine — 학습 노트</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --card-bg: #ffffff;
+    --text: #1f2328;
+    --text-dim: #5b6168;
+    --border: #e4e1da;
+    --accent: #2b6cb0;
+    --accent-soft: #eaf2fb;
+    --vocab-bg: #fff7e6;
+    --vocab-border: #f0c869;
+    --speaker: #8a4baf;
+    --music: #9aa0a6;
+    --code-bg: #f2f0eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17181a;
+      --card-bg: #202225;
+      --text: #e7e6e3;
+      --text-dim: #a2a6ab;
+      --border: #33363a;
+      --accent: #6fa8dc;
+      --accent-soft: #1e2b3a;
+      --vocab-bg: #332a14;
+      --vocab-border: #8a6d1f;
+      --speaker: #c79ee6;
+      --music: #7c8288;
+      --code-bg: #26282b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.65;
+  }
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+  header.page-header {
+    margin-bottom: 28px;
+  }
+  header.page-header h1 {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    margin: 0 0 8px;
+  }
+  header.page-header .meta {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+  header.page-header .meta a { color: var(--accent); }
+
+  section { margin-bottom: 40px; }
+  h2.section-title {
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+
+  .summary-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    font-size: 0.97rem;
+  }
+
+  /* reading area */
+  .line {
+    margin: 0 0 14px;
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+  .line.music {
+    text-align: center;
+    font-style: italic;
+    color: var(--music);
+    font-size: 0.85rem;
+    padding: 4px;
+  }
+  .speaker-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--speaker);
+    letter-spacing: 0.03em;
+    margin-bottom: 4px;
+  }
+  .vocab-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .vocab-chip {
+    background: var(--vocab-bg);
+    border: 1px solid var(--vocab-border);
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-size: 0.74rem;
+    color: var(--text);
+    cursor: help;
+  }
+  .vocab-chip b { font-weight: 700; }
+  .en-text {
+    font-size: 1rem;
+  }
+  details.tr {
+    margin-top: 4px;
+  }
+  details.tr > summary {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.76rem;
+    color: var(--text-dim);
+    user-select: none;
+  }
+  details.tr > summary::-webkit-details-marker { display: none; }
+  details.tr > summary::before {
+    content: "▸";
+    display: inline-block;
+    transition: transform 0.15s ease;
+    font-size: 0.7rem;
+  }
+  details.tr[open] > summary::before {
+    transform: rotate(90deg);
+  }
+  details.tr .ko-text {
+    margin: 6px 0 0 14px;
+    padding: 8px 12px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+
+  .controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .controls button {
+    font-size: 0.78rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .controls button:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* notes section */
+  .notes-content h3 {
+    font-size: 0.98rem;
+    color: var(--text);
+    margin: 24px 0 8px;
+  }
+  .notes-content p { font-size: 0.92rem; color: var(--text); margin: 0 0 12px; }
+  .notes-content ul { font-size: 0.92rem; padding-left: 20px; }
+  .notes-content li { margin-bottom: 6px; }
+  .notes-content strong { color: var(--accent); }
+
+  footer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page-header">
+    <h1>AI-made viruses could be the future of medicine</h1>
+    <div class="meta">
+      NPR · Short Wave · 2026-08-25 &nbsp;|&nbsp;
+      <a href="https://www.npr.org/2026/08/25/nx-s1-5935565/ai-virus-medicine-dna" target="_blank" rel="noopener">원문 기사</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.npr.org/transcripts/nx-s1-5935565" target="_blank" rel="noopener">트랜스크립트</a>
+    </div>
+  </header>
+
+  <section id="summary">
+    <h2 class="section-title">한글 요약</h2>
+    <div class="summary-card">
+      <p>스탠퍼드대 연구팀(Brian Hie, Samuel King 등)이 AI 언어모델을 DNA 서열에 학습시켜 완전히 새로운 바이러스 게놈을 설계하고, 실제로 박테리아를 감염시키는 데 성공한 연구를 소개하는 에피소드다. 이 바이러스는 인간이 아니라 박테리아만 감염시키는 박테리오파지(bacteriophage) 종류이며, 연구 결과는 저널 <em>Science</em>에 발표됐다.</p>
+      <p>전문가들은 이 기술이 항생제 내성 세균 감염 치료 등에 활용될 잠재력이 크다고 평가하지만, 동시에 이런 생물학 설계 기술의 접근성이 높아질 경우 위험한 병원체 설계에 악용될 수 있다는 우려도 함께 제기한다.</p>
+      <p style="margin-bottom:0">결론적으로 이 기술 자체는 아직 초기 단계이고 안전장치 하에 수행됐지만, 향후 거버넌스(규제) 마련이 시급하다는 것이 핵심 메시지다. 상세 설명은 페이지 하단을 참고하세요.</p>
+    </div>
+  </section>
+
+  <section id="reading">
+    <h2 class="section-title">원문 읽기</h2>
+    <div class="controls">
+      <button id="expand-all">전체 번역 펼치기</button>
+      <button id="collapse-all">전체 번역 접기</button>
+    </div>
+    <div id="lines"></div>
+  </section>
+
+  <section id="notes">
+    <h2 class="section-title">상세 설명</h2>
+    <div class="notes-content">
+      <h3>1. AI로 새로운 바이러스를 "언어처럼" 설계하다</h3>
+      <p>연구팀은 ChatGPT 같은 대형언어모델이 인터넷의 방대한 텍스트를 학습하듯, DNA를 A, C, G, T 네 글자로 이루어진 "언어"로 보고 AI 모델을 대량의 유전 서열 데이터로 학습시켰다. 이렇게 학습된 모델에게 새로운 바이러스 게놈 서열을 생성하도록 요청한 뒤, 이를 실제 박테리아에 주입하는 실험을 약 300회 반복했다. 그 결과 16개의 설계가 실제로 작동하는 바이러스를 만들어냈고, 이 바이러스들은 다른 박테리아를 감염시킬 수 있었다. 연구를 이끈 Brian Hie(스탠퍼드, 전 Facebook 연구원)와 Samuel King은 실험 데이터를 처음 확인했을 때의 흥분을 전했으며, 연구 결과가 랩 미팅에서 처음 발표됐을 때 자연스럽게 박수가 터져 나왔다고 언급했다. 이 전체 작업은 AI 이전 시대의 과학 연구 속도보다 훨씬 빠른 단 1년 만에 완료됐다.</p>
+
+      <h3>2. 단기·장기 활용 전망: 항생제 내성균부터 복잡한 질병 치료까지</h3>
+      <p>단기적으로 Brian Hie는 이 기술을 이용해 사람에게 발생하는 항생제 내성 박테리아 감염과 싸우기 위한 "맞춤형 바이러스"를 만드는 것을 상상한다. 기존에도 박테리아를 감염시켜 죽이는 바이러스(박테리오파지 치료)가 실제로 쓰이고 있는데, 박테리아가 내성을 진화시킬 때마다 AI로 새로운 버전의 바이러스를 설계해 대응할 수 있다는 것이다. 장기적으로(수십 년 단위) 그는 여러 유전자가 함께 작동하는 더 복잡한 생물학적 시스템·경로를 AI로 설계해서, 알츠하이머나 암처럼 단일 표적 약물로는 다루기 어려운 복잡한 질병에 다중 지점에서 개입하는 치료법을 만드는 미래를 그리고 있다. 다만 이는 이번 논문의 범위를 벗어난 먼 미래의 가능성이라고 스스로 밝힌다.</p>
+
+      <h3>3. 전문가들이 보는 위험성: 거버넌스 공백과 오남용 우려</h3>
+      <p>존스홉킨스 보건안보센터장 Tom Inglesby는 이번 연구가 책임감 있게 수행됐다고 평가하면서도, 이 기술이 더 널리 보급될 경우 안전을 보장할 수 없다고 경고한다. 그는 현재 이런 기술의 우발적 또는 의도적 오남용을 막을 거버넌스(제도적 장치)가 사실상 없다는 점을 지적한다. 현재는 Brian Hie 같은 전문 지식을 가진 사람이 극소수라 실질적 위협이 크지 않지만, ChatGPT가 짧은 시간에 대중화됐던 것처럼 생물학 AI도 접근성이 높아지면 위험한 병원체 설계의 기술적 장벽이 낮아질 수 있다는 것이 우려의 핵심이다. 다만 기자 Katia Riddle은 유전자 변형 자체는 새로운 위험이 아니며, 유전 서열로부터 바이러스를 합성하는 기술은 수십 년 전부터 존재해 왔다는 점도 짚는다. 변화하는 것은 AI로 인해 이런 작업의 "속도와 접근성"이 크게 높아질 수 있다는 점이다.</p>
+
+      <h3>4. 규제 방안: "디지털→물리적 DNA" 전환 지점을 통제하기</h3>
+      <p>MIT의 유전공학자이자 생물학적 위협 연구자인 Kevin Esvelt는 정부가 이 문제를 규제해야 한다고 강조하지만, 정부가 특정 실험을 금지하는 법을 만드는 데는 전반적으로 소극적이라는 현실적 어려움을 지적한다. Tom Inglesby는 대안으로, 누가 AI에 접근할 수 있는지를 통제하기보다 디지털 설계도가 실제 물리적 DNA로 합성되는 지점을 규제하는 편이 더 효과적일 수 있다고 제안한다. 커스텀 DNA를 제작해주는 회사들이 주문을 스크리닝해서 위험한 서열을 걸러내도록 의무화하자는 것이다. 실제로 미국 상원에는 이런 내용을 담은 초당적 법안이 이미 발의돼 있어, 입법자들도 이 이슈에 반응하기 시작했음을 보여준다.</p>
+
+      <h3>5. 낙관과 비관 사이: 연구자 자신의 시각</h3>
+      <p>기자 Katia Riddle은 이 기술이 사회를 위협할지, 의학의 획기적 돌파구가 될지, 혹은 둘 다일지 아직 판단하기 이르다고 말한다. 다만 연구를 이끈 Brian Hie는 비교적 낙관적인 입장이다. 그는 자연 자체도 이미 팬데믹 잠재력을 가진 바이러스를 끊임없이 만들어내고 있으므로(예: COVID-19), 이 기술이 잘 발전한다면 오히려 위험한 생물학에 맞서는 강력한 방어 수단이 될 수 있다고 주장한다. 즉 그는 이 기술이 결국 해악보다 이로움을 더 많이 가져올 것이라는 데 베팅하고 있다.</p>
+
+      <h3>핵심 키워드/용어</h3>
+      <ul>
+        <li><strong>박테리오파지(bacteriophage)</strong>: 박테리아만을 감염시키는 바이러스. 인간에게는 무해하며, 이번 연구에서 AI가 설계한 것도 이 종류.</li>
+        <li><strong>게놈(genome)</strong>: 한 생물(또는 바이러스)이 가진 전체 유전 정보/DNA 서열.</li>
+        <li><strong>거버넌스(governance)</strong>: 신기술의 오남용을 막기 위한 제도·규제 체계.</li>
+        <li><strong>초당적 법안(bipartisan bill)</strong>: 미국 상원에서 여야가 함께 발의한, DNA 합성 회사에 위험 서열 스크리닝을 의무화하는 법안.</li>
+        <li><strong>디지털-물리 전환 지점(digital-to-physical chokepoint)</strong>: AI가 설계한 DNA 서열(디지털 데이터)이 실제 DNA 분자(물리적 실체)로 합성되는 단계. 규제의 핵심 지렛대로 제안됨.</li>
+      </ul>
+
+      <h3>언급된 자료</h3>
+      <ul>
+        <li>연구 원문: 저널 <em>Science</em>에 게재 (에피소드 내 별도 링크 언급 없음)</li>
+        <li>Tom Inglesby가 공동 집필한 이 연구에 대한 해설(commentary)도 같은 저널 <em>Science</em>에 게재됨</li>
+        <li>같은 팟캐스트의 관련 에피소드: "researchers using AI to find new proteins"</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>개인 학습용 자료 · npr-article-notes 스킬 산출물 기반</footer>
+</div>
+
+<script>
+const ENTRIES = [{"speaker": "Regina Barber", "en": "You're listening to Short Wave from NPR.", "ko": "여러분은 NPR의 쇼트웨이브를 듣고 계십니다."}, {"speaker": "Regina Barber", "en": "Hey, Shortwavers.", "ko": "안녕하세요, 쇼트웨이버 여러분."}, {"speaker": "Regina Barber", "en": "Regina Barber here with NPR science correspondent Katia Riddle.", "ko": "NPR 과학 특파원 케이티아 리들과 함께하는 레지나 바버입니다."}, {"speaker": "Regina Barber", "en": "Hey, Katia.", "ko": "안녕하세요, 케이티아."}, {"speaker": "Katia Riddle", "en": "Hiya.", "ko": "안녕하세요."}, {"speaker": "Katia Riddle", "en": "Thanks for having me.", "ko": "초대해 주셔서 감사합니다."}, {"speaker": "Regina Barber", "en": "Of course.", "ko": "물론이죠."}, {"speaker": "Regina Barber", "en": "You are always welcome.", "ko": "언제나 환영이에요."}, {"speaker": "Regina Barber", "en": "So today, you've come on the show because you've been looking into another way scientists have been using AI-- to create viruses, and I don't mean the kind that exists in nature.", "ko": "오늘 이 자리에 나오신 건, 과학자들이 AI를 활용하는 또 다른 방식—바이러스를 만드는 것—을 취재해 오셨기 때문인데요, 자연에 존재하는 종류의 바이러스를 말하는 게 아니에요."}, {"speaker": "Katia Riddle", "en": "Yes.", "ko": "네."}, {"speaker": "Katia Riddle", "en": "So just to be clear from the outset, these viruses are infect bacteria, not humans.", "ko": "처음부터 분명히 해두자면, 이 바이러스들은 사람이 아니라 박테리아를 감염시킵니다."}, {"speaker": null, "en": "[MUSIC PLAYING]", "ko": "[음악 재생]", "music": true}, {"speaker": "Katia Riddle", "en": "The researchers took a number of precautions to make this work safe.", "ko": "연구진은 이 작업을 안전하게 만들기 위해 여러 예방 조치를 취했습니다."}, {"speaker": "Katia Riddle", "en": "Their work was recently published in the journal Science.", "ko": "이들의 연구는 최근 저널 '사이언스'에 게재됐습니다."}, {"speaker": "Katia Riddle", "en": "Basically, a group of scientists train AI models on DNA sequences.", "ko": "기본적으로, 한 과학자 그룹이 DNA 서열로 AI 모델을 학습시켰습니다."}, {"speaker": "Katia Riddle", "en": "You know how large language models like ChatGPT have ingested, you know, like, basically all of the internet, which is written in words?", "ko": "ChatGPT 같은 대형언어모델이 말 그대로 인터넷 전체—글로 쓰인 것들—를 학습해 온 거 아시죠?"}, {"speaker": "Regina Barber", "en": "Yeah.", "ko": "네."}, {"speaker": "Regina Barber", "en": "I'm guessing, instead of like using words, these researchers fed the AI DNA sequences?", "ko": "제 생각엔, 단어 대신 이 연구자들은 AI에 DNA 서열을 먹인 거죠?"}, {"speaker": "Katia Riddle", "en": "Exactly.", "ko": "맞아요."}, {"speaker": "Katia Riddle", "en": "It's a language, you know, just like English is.", "ko": "영어처럼, 이것도 하나의 언어예요."}, {"speaker": "Katia Riddle", "en": "DNA is written in an alphabet of just four letters A, C, G, and T.", "ko": "DNA는 A, C, G, T 단 네 글자로 이루어진 알파벳으로 쓰여 있습니다."}, {"speaker": "Katia Riddle", "en": "The model learned patterns in enormous amounts of that genetic language.", "ko": "이 모델은 방대한 양의 유전 언어에서 패턴을 학습했습니다."}, {"speaker": "Katia Riddle", "en": "It's similar to the way a large language model like ChatGPT learns patterns in text just reading the internet, and you can read a DNA sequence essentially like you can read a book.", "ko": "이는 ChatGPT 같은 대형언어모델이 인터넷의 텍스트를 읽으며 패턴을 학습하는 방식과 비슷하고, DNA 서열도 사실상 책을 읽듯이 읽을 수 있습니다."}, {"speaker": "Regina Barber", "en": "I mean, somebody can.", "ko": "뭐, 누군가는 그렇겠죠."}, {"speaker": "Regina Barber", "en": "Biology is still a little mysterious to me.", "ko": "저한테 생물학은 아직도 좀 신비로운 분야예요."}, {"speaker": "Katia Riddle", "en": "Yeah, fair point.", "ko": "네, 맞는 말이에요."}, {"speaker": "Regina Barber", "en": "OK, so the goal of this training, right, is not just to replicate existing viruses, but to create new ones, right?", "ko": "좋아요, 그러니까 이 학습의 목표는 기존 바이러스를 그대로 복제하는 게 아니라 새로운 바이러스를 만드는 거죠, 맞나요?"}, {"speaker": "Katia Riddle", "en": "That is right.", "ko": "맞아요."}, {"speaker": "Katia Riddle", "en": "So after all this training, they asked the models to come up with a new viral genome sequences, which the researchers then introduced into bacteria.", "ko": "이 모든 학습이 끝난 뒤, 연구진은 모델에게 새로운 바이러스 게놈 서열을 만들어내라고 요청했고, 그렇게 나온 서열을 박테리아에 주입했습니다."}, {"speaker": "Katia Riddle", "en": "They did that roughly 300 times.", "ko": "그런 시도를 약 300번 정도 했습니다."}, {"speaker": "Katia Riddle", "en": "Brian Hie is one of the researchers who worked on this project.", "ko": "브라이언 히는 이 프로젝트에 참여한 연구자 중 한 명입니다."}, {"speaker": "Katia Riddle", "en": "He's a scientist at Stanford.", "ko": "그는 스탠퍼드대 소속 과학자입니다."}, {"speaker": "Katia Riddle", "en": "Notably before he worked on this project, he worked at Facebook.", "ko": "흥미롭게도, 이 프로젝트를 하기 전에는 페이스북에서 일했습니다."}, {"speaker": "Katia Riddle", "en": "He described to me how exciting it was when he and his colleague, Samuel King, first got the results of this experiment.", "ko": "그는 동료 사무엘 킹과 함께 처음 실험 결과를 받았을 때 얼마나 흥분됐는지 저에게 이야기해 주었습니다."}, {"speaker": "Brian Hie", "en": "I think Samuel had pulled an all nighter or something like that and got the first batch of around 3:00 or 4:00 AM.", "ko": "사무엘이 밤을 새우다시피 해서 새벽 3~4시쯤 첫 데이터를 받은 걸로 기억해요.", "vocab": ["all-nighter"]}, {"speaker": "Brian Hie", "en": "I, like, woke up at 6:00 AM a couple hours later and saw the data that was posted onto our group Slack.", "ko": "저는 그로부터 몇 시간 뒤인 오전 6시쯤 일어나서 우리 그룹 슬랙에 올라온 데이터를 봤죠."}, {"speaker": "Katia Riddle", "en": "It took them only one year to complete this work, which is a lot faster than pre-AI science timelines.", "ko": "이 작업을 완료하는 데 걸린 시간은 단 1년으로, AI 이전 시대의 과학 연구 속도보다 훨씬 빨랐습니다."}, {"speaker": "Regina Barber", "en": "Yeah, this is giving me, like, PTSD for my own grad program.", "ko": "이거 듣다 보니 제 대학원 시절 트라우마가 떠오르네요."}, {"speaker": "Regina Barber", "en": "But yes, back to Brian, so what did the data say, the data that he was so excited to tell his lab group about?", "ko": "아무튼 다시 브라이언 얘기로 돌아가서, 그가 그렇게 흥분해서 랩 사람들에게 전한 그 데이터는 무슨 내용이었나요?"}, {"speaker": "Katia Riddle", "en": "So like I said, they tried roughly 300 of these AI-designed viruses.", "ko": "말씀드린 것처럼, AI가 설계한 바이러스를 약 300개 정도 시도했습니다."}, {"speaker": "Katia Riddle", "en": "16 of them worked.", "ko": "그중 16개가 실제로 작동했습니다."}, {"speaker": "Katia Riddle", "en": "That means they produced functioning viruses that could go on to infect other bacteria.", "ko": "즉, 다른 박테리아를 감염시킬 수 있는 실제 기능하는 바이러스를 만들어낸 거죠."}, {"speaker": "Katia Riddle", "en": "As far as we know, Brian's lab is the first to do this.", "ko": "저희가 아는 한, 브라이언의 연구실이 이걸 처음 해낸 곳입니다."}, {"speaker": "Brian Hie", "en": "The first time the data was actually presented at my lab meeting, the lab spontaneously broke into applause, which is the first time that's ever happened in my lab meeting.", "ko": "이 데이터가 처음 저희 랩 미팅에서 발표됐을 때, 랩 전체가 저절로 박수를 쳤어요. 제 랩 미팅에서 그런 일이 일어난 건 그때가 처음이었습니다.", "vocab": ["spontaneously"]}, {"speaker": "Regina Barber", "en": "Today on the show, humans are using AI to create new viruses.", "ko": "오늘 이 방송에서는, 인간이 AI를 이용해 새로운 바이러스를 만들어내는 이야기를 다룹니다."}, {"speaker": "Regina Barber", "en": "What are the implications?", "ko": "그 의미는 무엇일까요?"}, {"speaker": "Katia Riddle", "en": "How big a deal is this breakthrough?", "ko": "이 돌파구는 얼마나 대단한 일일까요?", "vocab": ["breakthrough"]}, {"speaker": "Katia Riddle", "en": "And how can we regulate it to keep it safe?", "ko": "그리고 이를 안전하게 유지하기 위해 어떻게 규제할 수 있을까요?"}, {"speaker": "Regina Barber", "en": "You're listening to Short Wave, the science podcast from NPR.", "ko": "여러분은 NPR의 과학 팟캐스트, 쇼트웨이브를 듣고 계십니다."}, {"speaker": "Regina Barber", "en": "OK, so researchers trained AI in the language of DNA.", "ko": "자, 연구자들이 DNA라는 언어로 AI를 학습시켰다고 했죠."}, {"speaker": "Regina Barber", "en": "We talked about that.", "ko": "그 얘기는 이미 했고요."}, {"speaker": "Regina Barber", "en": "Then they asked the DNA to use genomic sequences to make these new viruses, and then they introduced the viral DNA to the bacteria, turning them into these like little factories that pumped out the viruses, which went on to infect other bacteria.", "ko": "그런 다음 게놈 서열을 이용해 새로운 바이러스를 만들도록 했고, 그 바이러스 DNA를 박테리아에 주입해서 박테리아를 작은 공장처럼 바이러스를 쏟아내게 만들었고, 그렇게 나온 바이러스가 다른 박테리아를 감염시켰다는 거죠."}, {"speaker": "Regina Barber", "en": "Is that-- is that all right?", "ko": "이렇게 이해하면 맞나요?"}, {"speaker": "Katia Riddle", "en": "Yes, you got it.", "ko": "네, 정확히 이해하셨어요."}, {"speaker": "Regina Barber", "en": "What does that mean for the rest of us?", "ko": "그게 우리 나머지 사람들에게는 어떤 의미인가요?"}, {"speaker": "Katia Riddle", "en": "So there's short- and long-term goals for this kind of technology.", "ko": "이런 기술에는 단기 목표와 장기 목표가 있어요."}, {"speaker": "Katia Riddle", "en": "In the more near term, researcher, Brian Hie, imagines a time when we could use it to tailor-make viruses in order to fight drug-resistant bacterial infections that happen in people.", "ko": "좀 더 가까운 미래에 대해, 연구자 브라이언 히는 사람들에게 발생하는 항생제 내성 세균 감염과 싸우기 위해 맞춤형 바이러스를 만들 수 있는 시대를 상상합니다."}, {"speaker": "Brian Hie", "en": "I do think that applying this to real clinical isolates or strains of bacteria with real clinical benefit would be a very exciting next step to bring this technology to better help patients.", "ko": "실제 임상적 이점이 있는 실제 임상 균주에 이 기술을 적용하는 것이, 이 기술로 환자들을 더 잘 돕기 위한 매우 흥미로운 다음 단계가 될 거라고 생각합니다.", "vocab": ["clinical-isolate"]}, {"speaker": "Regina Barber", "en": "OK, so I can see how this would be useful since like the whole problem with drug-resistant bacteria is that it's evolved to fight all of the treatments we have against it.", "ko": "알겠어요, 왜 이게 유용할지 알 것 같아요, 항생제 내성 세균의 근본 문제가 우리가 가진 모든 치료법에 맞서 진화해 버렸다는 거니까요."}, {"speaker": "Katia Riddle", "en": "Right. Some existing viruses are actually useful to us.", "ko": "맞아요, 기존에도 우리에게 실제로 유용한 바이러스들이 있어요."}, {"speaker": "Katia Riddle", "en": "They infect and kill bacteria.", "ko": "이들은 박테리아를 감염시켜 죽입니다."}, {"speaker": "Katia Riddle", "en": "So researchers hope they could use AI to design new versions of these viruses as bacteria evolve resistance.", "ko": "그래서 연구자들은 박테리아가 내성을 진화시킬 때마다 AI로 이 바이러스들의 새로운 버전을 설계할 수 있기를 바라고 있어요."}, {"speaker": "Katia Riddle", "en": "Potentially, this could give us another way to fight these drug-resistant infections.", "ko": "이는 잠재적으로 이런 내성균 감염과 싸울 또 다른 방법을 우리에게 줄 수 있습니다."}, {"speaker": "Regina Barber", "en": "OK, so that's the short term, new viruses to help people's existing drug-resistant infections.", "ko": "좋아요, 그게 단기적인 거네요—사람들의 기존 내성균 감염을 돕는 새로운 바이러스요."}, {"speaker": "Regina Barber", "en": "So what's the long term?", "ko": "그럼 장기적으로는요?"}, {"speaker": "Katia Riddle", "en": "So long term is quite a ways out.", "ko": "장기적인 건 꽤 먼 얘기예요."}, {"speaker": "Katia Riddle", "en": "We're talking decades.", "ko": "수십 년 단위의 이야기입니다."}, {"speaker": "Katia Riddle", "en": "But Brian imagines eventually using AI to design much more complicated biological systems that could potentially help treat really formidable diseases.", "ko": "하지만 브라이언은 결국 AI를 이용해 정말 다루기 힘든 질병을 치료하는 데 도움이 될 수 있는 훨씬 더 복잡한 생물학적 시스템을 설계하는 것을 상상하고 있어요.", "vocab": ["formidable"]}, {"speaker": "Katia Riddle", "en": "He talks about how it could design larger genetic systems or pathways, multiple genes working together to perform a function.", "ko": "그는 여러 유전자가 함께 작동해 하나의 기능을 수행하는, 더 큰 유전자 시스템이나 경로를 설계할 수 있다고 이야기합니다."}, {"speaker": "Regina Barber", "en": "OK, so you're saying instead of, like, treating a disease with a single molecule or a drug that hits like one target, scientists maybe can design, like, complex systems, biological systems that intervene maybe at like multiple points to perform multiple functions.", "ko": "그러니까 하나의 표적만 치는 단일 분자나 약물로 질병을 치료하는 대신, 과학자들이 여러 지점에 개입해서 여러 기능을 수행하는 복잡한 생물학적 시스템을 설계할 수도 있다는 말씀이시군요."}, {"speaker": "Katia Riddle", "en": "Exactly.", "ko": "맞아요."}, {"speaker": "Katia Riddle", "en": "Here's how Brian puts it.", "ko": "브라이언이 이렇게 표현했어요."}, {"speaker": "Brian Hie", "en": "But in the future, it could be something like-- I don't know.", "ko": "하지만 미래에는 이게, 글쎄요, 뭐랄까..."}, {"speaker": "Brian Hie", "en": "This is totally out of the scope of this paper, but something like Alzheimer's or cancer can be addressed by more complex tools for genome design.", "ko": "이건 완전히 이번 논문의 범위를 벗어난 이야기지만, 더 복잡한 게놈 설계 도구로 알츠하이머나 암 같은 질병을 다룰 수 있을지도 모릅니다."}, {"speaker": "Regina Barber", "en": "And do other people in his field agree?", "ko": "그럼 이 분야의 다른 사람들도 그 의견에 동의하나요?"}, {"speaker": "Katia Riddle", "en": "Some people I talk to, yes.", "ko": "제가 이야기해 본 몇몇 사람들은 그렇다고 했어요."}, {"speaker": "Katia Riddle", "en": "Tom Inglesby is the director of the Johns Hopkins Center for Health Security.", "ko": "톰 잉글스비는 존스홉킨스 보건안보센터의 소장입니다."}, {"speaker": "Katia Riddle", "en": "He was not involved in this study, but he agreed.", "ko": "그는 이 연구에 참여하지는 않았지만, 동의했습니다."}, {"speaker": "Tom Inglesby", "en": "It's a big breakthrough, and it has the potential to do good in the world, as people figure out how to use this powerful technology to create new genomic designs.", "ko": "이건 큰 돌파구이고, 사람들이 이 강력한 기술을 새로운 게놈 설계에 활용하는 법을 알아가면서 세상에 좋은 일을 할 잠재력을 가지고 있습니다.", "vocab": ["breakthrough"]}, {"speaker": "Katia Riddle", "en": "Tom studies biological threats.", "ko": "톰은 생물학적 위협을 연구합니다."}, {"speaker": "Katia Riddle", "en": "He co-wrote a commentary on this work published in the journal Science.", "ko": "그는 이 연구에 대한 해설을 저널 '사이언스'에 공동 집필했습니다."}, {"speaker": "Katia Riddle", "en": "And he stresses that this project was done responsibly.", "ko": "그리고 그는 이 프로젝트가 책임감 있게 수행됐다는 점을 강조합니다."}, {"speaker": "Katia Riddle", "en": "But here's the thing that's worrying.", "ko": "하지만 걱정스러운 부분이 있어요."}, {"speaker": "Katia Riddle", "en": "Tom says once this technology, the new viruses become more widely available, that safety is not a guarantee.", "ko": "톰은 이 기술, 즉 새로운 바이러스가 더 널리 이용 가능해지면 안전이 보장되지 않는다고 말합니다."}, {"speaker": "Tom Inglesby", "en": "The problem is that we don't really have any governance in place to prevent either accidental or deliberate misuse of the technology.", "ko": "문제는 이 기술의 우발적이든 의도적이든 오남용을 막을 거버넌스가 사실상 마련되어 있지 않다는 겁니다."}, {"speaker": "Katia Riddle", "en": "That's not a concern for today.", "ko": "그게 당장 오늘의 걱정거리는 아니에요."}, {"speaker": "Katia Riddle", "en": "Right now there just aren't that many people like Brian, he and his colleagues who know how to do this kind of stuff.", "ko": "지금 당장은 브라이언과 그 동료들처럼 이런 걸 할 줄 아는 사람이 그리 많지 않으니까요."}, {"speaker": "Katia Riddle", "en": "It requires a lot of specialized expertise.", "ko": "상당한 전문 지식이 필요합니다."}, {"speaker": "Katia Riddle", "en": "But if this technology continues to evolve, that could change.", "ko": "하지만 이 기술이 계속 발전한다면 상황은 달라질 수 있습니다."}, {"speaker": "Katia Riddle", "en": "People with not good intentions could get their hands on it.", "ko": "나쁜 의도를 가진 사람들이 이 기술을 손에 넣을 수도 있어요."}, {"speaker": "Regina Barber", "en": "OK, I mean, I can guess what bad intentions would be, but how could someone misuse this technology?", "ko": "나쁜 의도가 뭔지는 짐작이 가는데, 실제로 이 기술을 어떻게 악용할 수 있을까요?"}, {"speaker": "Katia Riddle", "en": "Basically, Tom anticipates a time when eventually these models make it much easier for people to design biology or even dangerous biology.", "ko": "기본적으로 톰은 이런 모델들이 결국 사람들이 생물학, 심지어 위험한 생물학까지 설계하기 훨씬 쉽게 만들 시대를 예상합니다."}, {"speaker": "Katia Riddle", "en": "Biological warfare, that's the concern.", "ko": "생물학전, 그게 우려되는 부분입니다."}, {"speaker": "Regina Barber", "en": "Mm-hmm, yeah.", "ko": "음, 그렇군요."}, {"speaker": "Katia Riddle", "en": "We've seen how quickly like ChatGPT became widely available.", "ko": "ChatGPT 같은 게 얼마나 빨리 널리 보급됐는지 우리는 이미 봤잖아요."}, {"speaker": "Katia Riddle", "en": "As biological AI becomes more capable and accessible, experts worry it could lower some of the technical barriers to designing dangerous pathogens.", "ko": "생물학 AI가 더 강력하고 접근하기 쉬워지면서, 전문가들은 이것이 위험한 병원체를 설계하는 기술적 장벽을 낮출 수 있다고 우려합니다."}, {"speaker": "Regina Barber", "en": "Like engineering the next pandemic.", "ko": "마치 다음 팬데믹을 설계하는 것처럼요."}, {"speaker": "Katia Riddle", "en": "Yep, exactly. You know--", "ko": "네, 맞아요. 그러니까요..."}, {"speaker": "Regina Barber", "en": "Oof.", "ko": "아이고."}, {"speaker": "Katia Riddle", "en": "--weaponized biology is not necessarily a new kind of risk.", "ko": "무기화된 생물학이 꼭 새로운 종류의 위험은 아니에요.", "vocab": ["weaponize"]}, {"speaker": "Katia Riddle", "en": "Scientists already have ways to genetically modify viruses and other organisms.", "ko": "과학자들은 이미 바이러스나 다른 생물체를 유전적으로 변형하는 방법을 가지고 있습니다."}, {"speaker": "Katia Riddle", "en": "That includes experiments that give them new biological functions.", "ko": "여기에는 새로운 생물학적 기능을 부여하는 실험도 포함됩니다."}, {"speaker": "Katia Riddle", "en": "Researchers have been able to synthesize some viruses from genetic sequences for decades.", "ko": "연구자들은 수십 년 전부터 유전 서열로부터 일부 바이러스를 합성할 수 있었습니다."}, {"speaker": "Katia Riddle", "en": "But again, these kinds of things are hard for people to get a hold of.", "ko": "하지만 다시 말하지만, 이런 것들은 사람들이 손에 넣기가 쉽지 않아요."}, {"speaker": "Katia Riddle", "en": "With the speed at which AI is evolving, this kind of AI-driven biotechnology could become much more accessible.", "ko": "AI가 발전하는 속도를 감안하면, 이런 AI 기반 생명공학은 훨씬 더 접근하기 쉬워질 수 있습니다."}, {"speaker": "Regina Barber", "en": "Oof. So what do we do?", "ko": "아이고. 그럼 우린 뭘 해야 하죠?"}, {"speaker": "Katia Riddle", "en": "Well, so that's what I talked to Kevin Esvelt about.", "ko": "그래서 바로 그 부분에 대해 케빈 에스벨트와 이야기를 나눴어요."}, {"speaker": "Katia Riddle", "en": "He's a genetic engineer at MIT who also studies biological threats and how to regulate them.", "ko": "그는 MIT의 유전공학자로, 생물학적 위협과 그 규제 방법도 연구합니다."}, {"speaker": "Katia Riddle", "en": "He says we really need government regulation on this stuff, which it's not easy to just snap fingers and make that happen.", "ko": "그는 이런 것에 정부 규제가 정말로 필요하다고 말하는데, 그게 손가락 튕기듯 뚝딱 이뤄지는 일은 아니라고 합니다."}, {"speaker": "Kevin Esvelt", "en": "This is hard because governments are broadly reluctant to pass laws regarding what kinds of experiments can be done, period.", "ko": "이게 어려운 이유는, 정부가 어떤 실험을 할 수 있는지에 관한 법을 만드는 데 전반적으로 소극적이기 때문입니다, 그게 다예요."}, {"speaker": "Regina Barber", "en": "Yeah.", "ko": "네."}, {"speaker": "Regina Barber", "en": "I mean, governments might not know what is best or not.", "ko": "그러니까, 정부도 뭐가 최선인지 잘 모를 수도 있잖아요."}, {"speaker": "Katia Riddle", "en": "Mm-hmm, yeah, they're very hesitant to get into that space of saying what kind of things we can innovate.", "ko": "맞아요, 정부는 어떤 것을 혁신할 수 있는지 규정하는 영역에 발을 들이기를 매우 꺼립니다.", "vocab": ["hesitant"]}, {"speaker": "Katia Riddle", "en": "Tom did have another suggestion, though.", "ko": "그런데 톰은 다른 제안을 하나 내놨어요."}, {"speaker": "Katia Riddle", "en": "He says, rather than trying to control who has access to the AI, it may be more effective to regulate the point where a digital design gets turned into physical DNA.", "ko": "그는 누가 AI에 접근할 수 있는지를 통제하려 하기보다, 디지털 설계가 실제 물리적 DNA로 바뀌는 지점을 규제하는 편이 더 효과적일 수 있다고 말합니다."}, {"speaker": "Tom Inglesby", "en": "Better is just to prepare for the world where it's easy to cause pandemics.", "ko": "팬데믹을 일으키기 쉬운 세상이 될 것에 대비하는 편이 더 낫습니다."}, {"speaker": "Regina Barber", "en": "So what does that look like, like making a bottleneck of, like, when you can get from digital to physical?", "ko": "그럼 그게 어떤 모습일까요, 그러니까 디지털에서 물리적인 것으로 넘어가는 지점에 병목을 만든다는 게요?"}, {"speaker": "Katia Riddle", "en": "Basically, even if someone could use AI dangerous virus on a computer, they'd still need to turn that digital sequence into physical DNA.", "ko": "기본적으로, 누군가가 컴퓨터로 AI를 이용해 위험한 바이러스를 만들어낸다 해도, 그 디지털 서열을 실제 물리적 DNA로 바꿔야만 합니다."}, {"speaker": "Katia Riddle", "en": "Esvelt says that's a crucial chokepoint.", "ko": "에스벨트는 그게 결정적인 병목 지점이라고 말합니다.", "vocab": ["chokepoint"]}, {"speaker": "Katia Riddle", "en": "Companies manufacture custom DNA for researchers.", "ko": "여러 회사가 연구자들을 위해 맞춤형 DNA를 제작합니다."}, {"speaker": "Katia Riddle", "en": "One approach is requiring those companies to screen orders for dangerous sequences.", "ko": "한 가지 방법은 이런 회사들에게 위험한 서열이 있는지 주문을 스크리닝하도록 의무화하는 것입니다."}, {"speaker": "Katia Riddle", "en": "There's already a bipartisan bill proposed in the Senate on this issue.", "ko": "이미 상원에는 이 문제에 관한 초당적 법안이 발의되어 있습니다."}, {"speaker": "Katia Riddle", "en": "So lawmakers are starting to hear the alarms on this.", "ko": "그러니 입법자들도 이 문제에 대한 경고음을 듣기 시작한 거죠."}, {"speaker": "Kevin Esvelt", "en": "And this bill would require companies that make and sell custom DNA sequences to screen their orders for dangerous sequences.", "ko": "그리고 이 법안은 맞춤형 DNA 서열을 만들어 판매하는 회사들이 주문에서 위험한 서열이 있는지 스크리닝하도록 요구할 것입니다."}, {"speaker": "Regina Barber", "en": "OK, so, Katia, what do you think?", "ko": "자, 케이티아, 어떻게 생각하세요?"}, {"speaker": "Regina Barber", "en": "Like, will these AI viruses be weaponized and bring, like, the downfall of our society?", "ko": "이 AI 바이러스들이 무기화돼서 우리 사회의 몰락을 가져올까요?", "vocab": ["weaponize"]}, {"speaker": "Regina Barber", "en": "Or will it galvanize major breakthroughs, let's hope, like in medicine and biotechnology?", "ko": "아니면 바라건대 의학이나 생명공학의 큰 돌파구를 촉발할까요?", "vocab": ["breakthrough", "galvanize"]}, {"speaker": "Regina Barber", "en": "Or maybe it'll do both.", "ko": "아니면 어쩌면 둘 다일 수도 있고요."}, {"speaker": "Katia Riddle", "en": "Yeah. Honestly, Gina, I still do not know.", "ko": "글쎄요. 솔직히 지나, 저도 아직 잘 모르겠어요."}, {"speaker": "Katia Riddle", "en": "I think the jury is out, which is kind of where we are on questions of AI in general in society right now.", "ko": "아직 판단하기는 이르다고 생각해요, 사실 지금 사회 전반에서 AI에 관한 질문들이 다 그런 상태이기도 하고요.", "vocab": ["jury-is-out"]}, {"speaker": "Regina Barber", "en": "Yeah, I think so.", "ko": "네, 저도 그런 것 같아요."}, {"speaker": "Katia Riddle", "en": "But I can tell you that researcher Brian, he's one of the scientists at Stanford who's responsible for this work.", "ko": "하지만 이 연구를 담당한 스탠퍼드 과학자 중 한 명인 연구자 브라이언에 대해서는 말씀드릴 수 있어요."}, {"speaker": "Katia Riddle", "en": "He at least is optimistic that it will do more good than harm.", "ko": "그는 적어도 이 기술이 해악보다 이로움을 더 많이 가져올 거라고 낙관하고 있습니다."}, {"speaker": "Regina Barber", "en": "OK, what's his argument for that?", "ko": "그럼 그의 근거는 뭔가요?"}, {"speaker": "Katia Riddle", "en": "Well, he points out that we're already up against a lot.", "ko": "음, 그는 우리가 이미 많은 것과 맞서고 있다는 점을 지적합니다."}, {"speaker": "Katia Riddle", "en": "Nature is not necessarily a good actor either.", "ko": "자연도 꼭 선한 주체는 아니라는 거죠."}, {"speaker": "Brian Hie", "en": "If you think about it, nature itself is constantly producing viruses with pandemic potential.", "ko": "생각해보면, 자연 자체가 팬데믹을 일으킬 잠재력을 가진 바이러스를 끊임없이 만들어내고 있잖아요."}, {"speaker": "Regina Barber", "en": "I mean, it's true, right?", "ko": "사실이긴 하죠, 그렇죠?"}, {"speaker": "Regina Barber", "en": "Like, even if humans don't create another pandemic with AI, nature could create one eventually.", "ko": "인간이 AI로 또 다른 팬데믹을 만들어내지 않는다 해도, 자연이 결국 하나 만들어낼 수 있으니까요."}, {"speaker": "Regina Barber", "en": "We've seen that firsthand with, you know, the COVID pandemic.", "ko": "코로나19 팬데믹으로 우리는 그걸 직접 목격했잖아요."}, {"speaker": "Katia Riddle", "en": "Exactly.", "ko": "맞아요."}, {"speaker": "Katia Riddle", "en": "And the ultimate goal of their research, Brian says, is to develop biological technologies that can rapidly respond to something like the next pandemic.", "ko": "그리고 브라이언은 자신들 연구의 궁극적 목표가, 다음 팬데믹 같은 상황에 신속히 대응할 수 있는 생물학 기술을 개발하는 것이라고 말합니다."}, {"speaker": "Brian Hie", "en": "If the technology is allowed to develop, we can have very, very powerful means of defense against dangerous biology.", "ko": "이 기술이 계속 발전할 수 있게 허용된다면, 우리는 위험한 생물학에 맞설 매우 강력한 방어 수단을 갖게 될 수 있습니다."}, {"speaker": "Regina Barber", "en": "OK, so he's betting that these will ultimately be used for good instead of people trying to cause harm.", "ko": "그러니까 그는 결국 이 기술이 사람들에게 해를 끼치는 데 쓰이기보다는 좋은 쪽으로 쓰일 거라는 데 베팅하고 있는 거네요."}, {"speaker": "Katia Riddle", "en": "That is the bet he is making.", "ko": "그게 바로 그가 걸고 있는 베팅입니다."}, {"speaker": "Regina Barber", "en": "Let's hope he's right.", "ko": "그의 말이 맞기를 바라봅시다."}, {"speaker": "Regina Barber", "en": "Katia Riddle, thank you so much for being here.", "ko": "케이티아 리들, 함께해 주셔서 정말 감사합니다."}, {"speaker": "Katia Riddle", "en": "Thanks, Gina.", "ko": "고마워요, 지나."}, {"speaker": null, "en": "[MUSIC PLAYING]", "ko": "[음악 재생]", "music": true}, {"speaker": "Regina Barber", "en": "If you liked this episode, check out our story on researchers using AI to find new proteins.", "ko": "이번 에피소드가 마음에 드셨다면, AI로 새로운 단백질을 찾는 연구자들을 다룬 저희 기사도 확인해 보세요."}, {"speaker": "Regina Barber", "en": "Also, maybe share this episode with a friend.", "ko": "그리고 이 에피소드를 친구와 공유해 보시는 것도 좋겠네요."}, {"speaker": "Regina Barber", "en": "This episode was produced by Juan Diego Ramirez and edited by Rebecca Ramirez.", "ko": "이번 에피소드는 후안 디에고 라미레즈가 제작하고, 레베카 라미레즈가 편집했습니다."}, {"speaker": "Regina Barber", "en": "Tyler Jones checked the facts, and Jimmy Keeley was the audio engineer.", "ko": "타일러 존스가 팩트체크를 담당했고, 지미 킬리가 오디오 엔지니어를 맡았습니다."}, {"speaker": "Regina Barber", "en": "I'm Regina Barber.", "ko": "저는 레지나 바버입니다."}, {"speaker": "Regina Barber", "en": "Thank you for listening to Short Wave from NPR.", "ko": "NPR의 쇼트웨이브를 들어주셔서 감사합니다."}];
+const VOCAB = [{"id": "all-nighter", "term": "pull an all-nighter", "ipa": "ˌɔːlˈnaɪtər", "pos": "구어체", "ko": "밤을 새우다", "note": "“Samuel had pulled an all nighter” → 사무엘이 밤을 새워 작업했다는 뜻."}, {"id": "spontaneously", "term": "spontaneously", "ipa": "spɑːnˈteɪniəsli", "pos": "부사", "ko": "자발적으로, 즉흥적으로", "note": "“the lab spontaneously broke into applause” → 랩 전체가 저절로 박수를 터뜨렸다는 뜻."}, {"id": "breakthrough", "term": "breakthrough", "ipa": "ˈbreɪkθruː", "pos": "명사", "ko": "(과학·기술의) 획기적 돌파구, 큰 진전", "note": "“It's a big breakthrough”에서처럼 중대한 성과를 가리킬 때 자주 쓰인다."}, {"id": "formidable", "term": "formidable", "ipa": "ˈfɔːrmɪdəbl", "pos": "형용사", "ko": "(문제·질병 등이) 만만치 않은, 다루기 벅찬", "note": "“really formidable diseases” → 치료하기 매우 어려운 질병들."}, {"id": "chokepoint", "term": "chokepoint", "ipa": "ˈtʃoʊkpɔɪnt", "pos": "명사", "ko": "병목 지점, 통제하기 좋은 길목", "note": "디지털 설계가 실제 DNA로 바뀌는 규제 가능한 지점을 가리키는 비유."}, {"id": "weaponize", "term": "weaponize", "ipa": "ˈwepənaɪz", "pos": "동사", "ko": "무기화하다", "note": "“weaponized biology” → 생물학을 무기(생물무기)로 전용하는 것."}, {"id": "jury-is-out", "term": "the jury is out", "ipa": "ˈdʒʊri", "pos": "관용구", "ko": "아직 결론이 나지 않았다, 판단하기 이르다", "note": "“I still do not know. I think the jury is out” → 아직 확신할 수 없다는 뜻."}, {"id": "galvanize", "term": "galvanize", "ipa": "ˈɡælvənaɪz", "pos": "동사", "ko": "(행동·변화를) 촉발하다, 자극하다", "note": "“galvanize major breakthroughs” → 큰 돌파구를 이끌어내다."}, {"id": "hesitant", "term": "hesitant", "ipa": "ˈhezɪtənt", "pos": "형용사", "ko": "주저하는, 망설이는", "note": "“very hesitant to get into that space” → (정부가) 그 영역에 관여하기를 꺼린다는 뜻."}, {"id": "clinical-isolate", "term": "clinical isolate / strain", "ipa": "aɪsəleɪt, streɪn", "pos": "전문 용어", "ko": "실제 환자·임상 현장에서 채취한 균주", "note": "“real clinical isolates or strains of bacteria” → 실험실이 아니라 실제 임상에서 얻은 세균 균주."}];
+const vocabById = Object.fromEntries(VOCAB.map(v => [v.id, v]));
+
+function esc(s) {
+  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+const container = document.getElementById("lines");
+let lastSpeaker = null;
+const frag = document.createDocumentFragment();
+
+ENTRIES.forEach((e, idx) => {
+  const div = document.createElement("div");
+  if (e.music) {
+    div.className = "line music";
+    div.textContent = `${e.en}  →  ${e.ko}`;
+    frag.appendChild(div);
+    lastSpeaker = null;
+    return;
+  }
+
+  div.className = "line";
+
+  if (e.speaker && e.speaker !== lastSpeaker) {
+    const sp = document.createElement("div");
+    sp.className = "speaker-label";
+    sp.textContent = e.speaker;
+    div.appendChild(sp);
+    lastSpeaker = e.speaker;
+  }
+
+  if (e.vocab && e.vocab.length) {
+    const row = document.createElement("div");
+    row.className = "vocab-row";
+    e.vocab.forEach(vid => {
+      const v = vocabById[vid];
+      if (!v) return;
+      const chip = document.createElement("span");
+      chip.className = "vocab-chip";
+      chip.title = `[${v.ipa}] ${v.pos} — ${v.note}`;
+      chip.innerHTML = `<b>${esc(v.term)}</b> · ${esc(v.ko)}`;
+      row.appendChild(chip);
+    });
+    div.appendChild(row);
+  }
+
+  const enP = document.createElement("div");
+  enP.className = "en-text";
+  enP.textContent = e.en;
+  div.appendChild(enP);
+
+  const details = document.createElement("details");
+  details.className = "tr";
+  const summary = document.createElement("summary");
+  summary.textContent = "해석 보기";
+  details.appendChild(summary);
+  const koDiv = document.createElement("div");
+  koDiv.className = "ko-text";
+  koDiv.textContent = e.ko;
+  details.appendChild(koDiv);
+  div.appendChild(details);
+
+  frag.appendChild(div);
+});
+
+container.appendChild(frag);
+
+document.getElementById("expand-all").addEventListener("click", () => {
+  document.querySelectorAll("details.tr").forEach(d => d.open = true);
+});
+document.getElementById("collapse-all").addEventListener("click", () => {
+  document.querySelectorAll("details.tr").forEach(d => d.open = false);
+});
+</script>
+</body>
+</html>
