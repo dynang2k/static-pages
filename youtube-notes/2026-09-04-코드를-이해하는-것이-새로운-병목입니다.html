@@ -67,6 +67,21 @@
   }
   .content a { color: var(--accent); }
   .content strong { color: var(--accent); }
+  .summary-box {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 4px 20px 14px;
+    margin-bottom: 2em;
+  }
+  .summary-box h2 {
+    color: var(--accent);
+    margin-top: 0.8em;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .summary-box ul { margin-bottom: 0; }
+  .summary-box li { margin-bottom: 4px; }
   footer { text-align: center; font-size: 0.75rem; color: var(--text-dim); margin-top: 40px; }
 </style>
 </head>
@@ -78,6 +93,15 @@
     <div class="meta">발표자: Geoffrey Litt (Notion)</div>
   </header>
   <div class="content">
+<div class="summary-box"><h2>한눈에 보기</h2>
+<ul>
+<li>AI 에이전트 시대에도 코드를 이해해야 하는 이유는 "결과물 검증"이 아니라 "다음 아이디어를 내며 능동적으로 참여하기 위함"이다.</li>
+<li>이해를 소홀히 하면 <strong>인지 부채(cognitive debt)</strong>가 쌓인다 — 코드는 깨끗해도 "왜 이렇게 만들었는지" 아무도 설명 못 하는 상태가 될 수 있다 (Margaret-Anne Storey).</li>
+<li><strong>explain-diff 스킬</strong>: 배경 설명 → 직관 → 인터랙티브 도표 → 문장형 코드 설명 → 이해도 퀴즈 순으로 diff를 문서화하는 실천법 (GitHub Gist 공개).</li>
+<li><strong>마이크로월드</strong>: Seymour Papert의 "Mathland" 개념처럼, 에이전트가 짜준 디버거·시뮬레이션 속에 직접 들어가 보며 직관적으로 이해한다.</li>
+<li><strong>공유 공간</strong>: 사람과 에이전트가 함께 참여하는 멀티플레이어 채팅·협업 문서로 팀 전체의 집단적 이해를 쌓는다.</li>
+<li>결론: Alan Kay의 1972년 "Dynabook" 비전을 인용하며, AI는 인간을 루프 밖으로 빼는 게 아니라 더 깊이 루프 안에 머물게 해줄 수 있다고 강조한다.</li>
+</ul></div>
 <h1>"코드를 이해하는 것"이 새로운 병목입니다 — Geoffrey Litt (Notion) 강연 정리 (보강판)</h1>
 <ul>
 <li>영상: https://www.youtube.com/watch?v=x3e_Yl4NNHY</li>
