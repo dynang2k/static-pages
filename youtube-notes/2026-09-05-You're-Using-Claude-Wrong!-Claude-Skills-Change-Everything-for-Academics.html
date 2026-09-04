@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're Using Claude Wrong! Claude Skills Change Everything for Academics</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --card-bg: #ffffff;
+    --text: #1f2328;
+    --text-dim: #5b6168;
+    --border: #e4e1da;
+    --accent: #2b6cb0;
+    --accent-soft: #eaf2fb;
+    --code-bg: #f2f0eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17181a;
+      --card-bg: #202225;
+      --text: #e7e6e3;
+      --text-dim: #a2a6ab;
+      --border: #33363a;
+      --accent: #6fa8dc;
+      --accent-soft: #1e2b3a;
+      --code-bg: #26282b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+  header.page-header {
+    margin-bottom: 28px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 18px;
+  }
+  header.page-header h1 { font-size: 1.5rem; line-height: 1.4; margin: 0 0 8px; }
+  header.page-header .meta { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 4px; }
+  header.page-header .meta a { color: var(--accent); }
+  .content h2 { font-size: 1.15rem; color: var(--accent); margin-top: 2.2em; }
+  .content h3 {
+    font-size: 1.02rem;
+    margin-top: 1.8em;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+  }
+  .content p { font-size: 0.96rem; }
+  .content ul, .content ol { font-size: 0.96rem; padding-left: 22px; }
+  .content li { margin-bottom: 6px; }
+  .content code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+  .content pre { background: var(--code-bg); padding: 12px 16px; border-radius: 8px; overflow-x: auto; }
+  .content blockquote {
+    margin: 0;
+    padding: 8px 14px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 4px;
+  }
+  .content a { color: var(--accent); }
+  .content strong { color: var(--accent); }
+  .summary-box {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 4px 20px 14px;
+    margin-bottom: 2em;
+  }
+  .summary-box h2 {
+    color: var(--accent);
+    margin-top: 0.8em;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+  }
+  .summary-box ul { margin-bottom: 0; }
+  .summary-box li { margin-bottom: 4px; }
+  footer { text-align: center; font-size: 0.75rem; color: var(--text-dim); margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page-header">
+    <h1>You're Using Claude Wrong! Claude Skills Change Everything for Academics</h1>
+    <div class="meta"><a href="https://www.youtube.com/watch?v=iYxCRa3a8NA" target="_blank" rel="noopener">원본 보기</a></div>
+  </header>
+  <div class="content">
+<div class="summary-box"><h2>한눈에 보기</h2>
+<ul>
+<li>Claude를 "질문-답변" 계산기처럼 쓰는 건 잘못된 사용법이며, 2026년엔 <strong>스킬(Skill)</strong> 기반 활용이 핵심 — Anthropic은 2025년 10월 16일 Claude Skills를 공식 발표했고, 이후 학술 연구 워크플로에 급속히 자리잡았다.</li>
+<li>스킬은 특정 작업의 표준 운영 절차(SOP)를 담은 초장문 단계별 프롬프트로, 재현 가능한 결과물을 얻기 위해 사용한다. 2025년 12월 18일에는 Agent Skills 명세가 <code>agentskills.io</code>를 통해 오픈 스탠다드로 공개되어, 같은 형식의 스킬이 Claude 외 다른 플랫폼에서도 통용될 수 있게 됐다.</li>
+<li><strong>절대 맹목적으로 쓰지 말 것</strong> — 설치 전 내부 워크플로를 반드시 확인해야 한다.</li>
+<li>Claude가 알아서 스킬을 항상 원하는 시점에 쓰지 않으므로 <code>/스킬이름</code> 또는 "OO 스킬 써서 ~해줘"로 명시적 호출이 필요하다.</li>
+<li>스킬은 데스크톱 접근으로 실제 코드 실행이 가능해 <strong>악성 스킬 위험</strong>이 있다 — Consensus 같은 신뢰 업체나 GitHub 스타 수 많은 저장소 위주로 확보하는 것이 안전하다.</li>
+<li>Consensus에는 curriculum development·literature review helper·grant research 3종의 사전 제작 스킬이 실제로 존재한다. 다만 영상에서 "Consensus에 딸려온다"고 소개한 <strong>skill creator는 사실 Anthropic 자체 공식 저장소(<code>anthropics/skills</code>)가 기본 제공하는 메타 스킬</strong>이며 Consensus와는 무관하다.</li>
+</ul></div>
+<h1>You're Using Claude Wrong! Claude Skills Change Everything for Academics</h1>
+<h2>개요</h2>
+<p>이 영상은 학술/연구 분야에서 Claude를 사용하는 사람들을 대상으로, Claude의 "스킬(Skill)" 기능을 처음부터 끝까지 실습으로 보여준다. 발표자는 스킬이 무엇인지, Claude 설정 화면에서 어떻게 확인하고 만들 수 있는지, 실제 스킬 하나(Consensus의 워크플로)를 열어 내부 구조를 보여주고, 스킬을 어떻게 명시적으로 호출해야 하는지, 그리고 스킬을 어디서 구할 수 있는지(Consensus, GitHub)를 설명한다. 마지막으로 스킬을 사용할 때 조심해야 할 점(출처 검증, 명시적 호출, 결과 검토, 악성 코드 실행 위험)을 강조하고, "skill creator"라는 메타 스킬로 누구나 자신만의 스킬을 손쉽게 만들 수 있다는 것을 보여주며 마무리한다.</p>
+<h2>주제별 상세 정리</h2>
+<h3>스킬이란 무엇인가</h3>
+<p>발표자는 먼저 Claude를 "질문 → 답변, 질문 → 답변" 식으로 계산기처럼 쓰는 것은 잘못된 사용법이라고 지적하며 영상을 시작한다. Claude 계정의 이름(프로필) → 설정(Settings)으로 들어가면 "Skills"라는 메뉴가 있는데, 여기서 스킬을 확인하고 관리할 수 있다. 스킬은 특정 작업에 대해 Claude에게 제공하는 일련의 지시사항으로, 말하자면 특정 업무를 위한 "표준 운영 절차(Standard Operating Procedure)"다. 스킬을 쓰는 이유는 두 가지인데, 매번 같은 방식으로 재현 가능한(reproducible) 출력을 얻을 수 있고, 정확히 자신이 원하는 형태의 결과를 얻을 수 있기 때문이다.</p>
+<p>실제로 스킬 파일 내부를 열어보면, 결국 그 정체는 아주 길고 상세한 프롬프트라는 것을 알 수 있다. 다만 "이것 해, 답해, 저것 해, 답해" 식의 단발성 지시가 아니라, "이 워크플로를 거칠 것이다 — 먼저 이것, 그다음 이것, 그다음 이것, 그다음 결과물을 보고 다듬어라" 하는 식으로 전체 작업 절차가 프롬프트 안에 통째로 녹아 있다. 발표자는 Consensus에서 받은 문헌 리뷰(literature review) 스킬을 예시로 열어 보여주는데, 이 스킬 안에는 개요(overview), Phase 1, Phase 2, Phase 3(요약 작성과 논의 질문 도출 등)로 나뉜 단계별 워크플로가 있고, 심지어 표(table) 형태로 정보가 정리된 부분도 있다. 즉 스킬은 결국 "AI를 위한 아주 긴, 단계별 지시사항이 담긴 거대한 프롬프트"라는 것이 발표자의 결론이다.</p>
+<p>이 정의는 Anthropic 공식 설명과도 일치한다. Anthropic은 2025년 10월 16일 Claude Skills를 정식 발표했고, PPTX·XLSX·DOCX·PDF 문서 생성 등을 위한 사전 제작 스킬과 함께 Claude.ai·Claude Code·API 전반에서 커스텀 스킬을 만들 수 있는 기능을 함께 내놓았다. Claude Platform 공식 문서에서도 "스킬은 Claude가 특정 작업을 수행할 때 탐지하고 호출할 수 있는, 지시사항·스크립트·리소스를 담은 폴더 구조의 재사용 가능한 캡슐"이라고 정의한다. (출처: <a href="https://support.claude.com/en/articles/12512176-what-are-skills">What are skills? – Claude Support</a>, <a href="https://www.verdent.ai/guides/claude-skills-announcement-news">Claude Skills 발표 타임라인 – Verdent</a>)</p>
+<p>또한 2025년 12월 18일에는 Agent Skills 명세가 <code>agentskills.io</code>를 통해 오픈 스탠다드로 공개됐다. 즉 이 형식으로 만든 스킬은 Claude에만 종속되지 않고, 같은 표준을 채택한 다른 AI 플랫폼·툴에서도 동일하게 동작할 수 있다는 의미다. (출처: <a href="https://support.claude.com/en/articles/12512176-what-are-skills">What are skills? – Claude Support</a>)</p>
+<h3>스킬을 절대 맹목적으로 쓰면 안 되는 이유</h3>
+<p>발표자가 가장 강조하는 지점 중 하나는, 어디서 받아온 스킬이든 절대 그대로 믿고 쓰면 안 된다는 것이다. 스킬을 설치하기 전에 반드시 그 안의 워크플로를 훑어보고, 그것이 자신이 실제로 원하는 접근 방식과 일치하는지 확인해야 한다. 만약 워크플로를 검토하는 대신 다른 방법을 쓰고 싶다면, 일단 스킬을 실제로 적용해서 결과물이 어떻게 나오는지 보고, 그 결과를 보면서 스킬 자체를 계속 다듬어(refine) 가는 방식도 가능하다고 설명한다.</p>
+<h3>스킬을 실제로 호출하는 방법</h3>
+<p>스킬을 Claude 대화창에서 사용하는 방법은 두 가지다. 첫째, 프롬프트 입력창 아래에 있는 "스킬 추가" 버튼을 눌러 원하는 스킬을 선택하는 방법. 둘째, 채팅창에 백슬래시(<code>/</code>)를 입력하면 사용 가능한 모든 스킬 목록이 뜨는데, 여기서 예를 들어 "literature review helper"를 선택해 프롬프트에 명시적으로 포함시키는 방법이다.</p>
+<p>이 부분에서 발표자는 스킬 사용의 두 번째 주의사항을 짚는다 — 스킬은 항상 원하는 시점에, 원하는 방식대로 자동으로 쓰이는 것이 아니라는 점이다. 그래서 Claude Code를 쓸 때는 스킬을 아주 명시적으로 지정하는 것을 강력히 권장한다고 한다. <code>/</code> 뒤에 스킬 이름을 붙여 직접 넣거나, 아니면 그냥 프롬프트 문장 안에 "OO 스킬을 써서 ~를 해줘"라고 적으면, Claude가 실제로 그 시점에 해당 스킬을 사용하도록 보장할 수 있다. 즉 지름길(단축 호출)을 습관적으로 쓰고, 만약 스킬이 잘 작동하지 않는 것 같으면 <code>/</code> 방식으로 명시적으로 포함시키라는 것이 요지다.</p>
+<h3>스킬을 구할 수 있는 곳 (1) — Consensus</h3>
+<p>스킬을 어디서 구할 수 있는지에 대해, 여러 곳이 있지만 위험한 스킬을 받을 가능성도 있으니 항상 조심해야 한다고 먼저 경고한다. 스킬은 데스크톱 접근 권한을 통해 실제 워크스테이션에서 코드를 실행할 수 있기 때문에, 악성 스킬을 잘못 받으면 컴퓨터에서 무슨 일이 벌어질지 알 수 없다는 것이다.</p>
+<p>첫 번째 소스로 소개하는 곳은 Consensus다. Consensus의 MCP 페이지에 가면 ChatGPT나 Claude Code에 Consensus를 연결할 수 있는데, 발표자가 특히 주목하는 부분은 그 아래에 있는 "Claude에 스킬을 직접 넣을 수 있는" 섹션이다. 여기서 "Claude" 버튼을 클릭하면 미리 만들어진 프롬프트/스킬들이 나오고, 각각 다운로드할 수 있다. Consensus라는 평판 좋은 회사가 이미 만들어 놓은 커리큘럼 개발(curriculum development), 문헌 리뷰 헬퍼(literature review helper), 연구비 지원서 조사(grant research) 스킬 등을 볼 수 있는데, 발표자는 이런 것들은 주저 없이 자신의 Claude에 넣겠다고 말한다. 실제로 Consensus는 이 세 가지 스킬(커리큘럼 개발, 문헌 리뷰 헬퍼, 연구비 조사)을 그대로 제공하고 있으며, 문헌 리뷰 스킬은 검색 전략·출처 평가·종합·인용 관리를 포함해 체계적 문헌 리뷰나 참고문헌 목록 구축에 쓰도록 설계돼 있다. (출처: <a href="https://www.skillsdirectory.com/skills/k-dense-ai-literature-review">Literature Review - Claude Skill</a>)</p>
+<p>스킬을 설치하는 방법은 간단하다. 스킬을 다운로드한 뒤, 설정(Settings) → Skills로 가서 "스킬 작성(write a skill)" 또는 "스킬 업로드(upload a skill)" 중 업로드를 선택하고, <code>.md</code>(마크다운) 파일이나 <code>SKILL.md</code> 파일을 포함한 zip 파일을 드래그 앤 드롭하면 된다. 또한 Skills 화면의 "Browse" 메뉴로 가면 Claude에 기본 내장된 스킬들(스킬 크리에이터, 캔버스 디자인, 웹 아티팩트, MCP 빌더 등)도 볼 수 있는데, 발표자는 현재 시점에서는 이런 기본 스킬들이 학술·연구 용도로는 그다지 훌륭하지 않지만, 앞으로 점점 더 학술·연구 분야에 맞게 개선될 것이라고 예측한다.</p>
+<p>스킬을 직접 밑바닥부터 작성하는 방법("write instructions from scratch")도 있지만, 발표자는 스킬에 아직 익숙하지 않다면 이 경로는 권하지 않는다. 다만 아주 구체적인 작업이 있고 정확히 어떻게 하는지 알고 있다면, 이 방법으로 모든 것을 완전히 통제하며 스킬을 작성할 수 있다. 스킬을 잘 모른다면 "Create with Claude"로 만들거나 다른 곳에서 스킬을 업로드하는 쪽을 추천한다.</p>
+<h3>스킬을 구할 수 있는 곳 (2) — GitHub</h3>
+<p>두 번째로 추천하는 소스는 GitHub다. 많은 사람들이 자신이 만든 스킬을 무료로 공유하는 곳인데, 여기서 스킬을 고를 때는 특히 조심해야 한다고 강조한다 — 위험한 스킬이 섞여 있을 수 있기 때문이다. 발표자는 판단 기준으로 스타(star) 수를 든다. 스타가 많이 달린 저장소라면 상당히 신뢰할 수 있다고 보는데, 그만큼 많은 사람들이 실제 코드를 검토했고 그 스킬이 유용하다고 판단했다는 뜻이기 때문이다.</p>
+<p>예시로 "research skills for Claude code"라는, Claude Code 워크스페이스 전용 스킬 모음 저장소를 보여준다. 그중 발표자가 특히 관심을 가진 것은 Steven Turner가 만든 "peer review assistant" 스킬이다. 이 스킬을 쓰려면 먼저 Consensus를 MCP 커넥터로 연결해야 하는데, 방법은 Claude 설정 → 커넥터(Connectors) 추가 → 커스텀 커넥터(custom connector) 추가 후 Consensus 페이지의 안내를 따르면 된다.</p>
+<p>Consensus가 연결되면 이 peer review assistant 스킬을 쓸 수 있는데, 논문 심사(peer review)와 관련된 다양한 작업에 유용하다. 예를 들어 곧 제출할 논문이 있다면, 이 스킬로 논문을 미리 점검해서 실제 심사자가 지적할 만한 허점(gap)이 있는지 확인할 수 있다. 발표자는 이 스킬이 "까칠한 리뷰어(grumpy reviewer)"처럼 행동한다고 표현하며 매우 마음에 든다고 말한다. 설치는 GitHub 저장소의 릴리스(Release) 페이지에서 <code>skill peer reviewer assistant.skill</code> 파일을 찾아 다운로드한 뒤, 앞서와 동일하게 "스킬 업로드"로 넣으면 된다. 이 스킬 내부를 살펴보면 에러 핸들링까지 갖춰져 있고, 워크플로도 잘 짜여 있는데 — 원고(manuscript)를 입력받으면 그 논문 내용에 대해 순차적으로 4~6번의 Consensus 검색을 실행해서 관련 정보를 찾아내는 방식으로 동작한다.</p>
+<p>실제로 이 스킬은 Steven Turner가 만들어 <code>github.com/stephenturner/skill-peer-review-assistant</code>에 공개해 둔 오픈소스 스킬이며, Consensus에 색인된 동료심사 논문에 근거해 제출 전 모의 동료심사를 수행하는 것이 목적이다. 최종 결과물은 Word 문서 형태로, 배경 설명의 정확성, 누락된 인용, 방법론 평가, 주요/사소한 우려사항, 명확한 권고 의견, 그리고 실행된 모든 검색 쿼리와 결과 수를 기록한 감사 로그(audit log)까지 포함된 구조로 나온다. 즉 영상에서 소개된 "까칠한 리뷰어" 동작 방식은 실제로도 배경 주장의 문헌 검증(Claim Verification), 인용 공백 분석(Citation Gap Analysis), 방법론 평가(Methods Assessment) 기능으로 뒷받침된다. (출처: <a href="https://blog.stephenturner.us/p/claude-skill-peer-review-consensus">A Claude skill for pre-submission peer review – Paired Ends</a>)</p>
+<h3>스킬 스킬(Skill Skill) — 스킬을 만드는 스킬</h3>
+<p>영상 후반부에서 발표자가 "이것까지 보고 가라"며 소개하는 핵심 내용은, 학술 작업을 계속 반복하고 있다면 도움이 될 "스킬 스킬(the skill skill)"이다. 발표자는 이것이 Consensus에 기본으로 포함되어 있어 별도로 다운로드할 필요가 없다고 설명하며, <code>/</code>(백슬래시)를 입력하면 "skill creator"라는 이름으로 나타난다고 말한다. 이 skill creator를 이용하면 프롬프트만으로 자기만의 스킬을 직접 만들 수 있다.</p>
+<blockquote>
+<p><strong>보강 노트</strong>: 조사 결과 skill-creator는 Consensus가 제공하는 것이 아니라, Anthropic 자체 공식 저장소(<code>github.com/anthropics/skills</code>, 플러그인 <code>claude-plugins-official/skill-creator</code>)가 기본 제공하는 메타 스킬이다. Anthropic 공식 문서에 따르면 skill-creator는 "스킬을 어떻게 잘 만들지 Claude에게 가르치는 메타 스킬"로, Create·Eval·Improve·Benchmark 네 가지 운영 모드를 통해 스킬 개발 전체 주기를 안내하도록 설계돼 있다. Consensus를 연결했든 안 했든 Claude 계정에 이미 존재하는 기본 스킬이므로, "Consensus에 딸려온다"는 설명은 부정확하다 — 영상에서 발표자가 Consensus MCP 화면 안에서 <code>/</code>를 입력하다 보니 이 기본 스킬도 같이 목록에 뜬 것을, Consensus가 제공하는 것으로 착각한 것으로 보인다. (출처: <a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/skill-creator/skills/skill-creator/SKILL.md">skill-creator – GitHub anthropics/claude-plugins-official</a>, <a href="https://enterprisedna.co/directories/skills/skill-creator-skill/">Skill Creator Skill – Anthropic</a>)</p>
+</blockquote>
+<p>여기서 발표자가 반드시 지켜야 할 원칙으로 강조하는 것은, 스킬로 만들어진 결과물이라도 항상 확인하고 다듬어야(check and refine) 한다는 점이다. "스킬을 만들었으니 이제 끝났다"는 식으로 생각하면 안 된다는 것이다.</p>
+<p>스킬을 만드는 방법은 두 가지로 소개된다. 첫째는, 먼저 Claude와 평소처럼 일반 대화로 작업(예: OPV 소자 논문에 대한 초록(abstract) 작성 돕기)을 진행하다가, "이 워크플로는 매번 다시 타이핑하고 싶지 않고 계속 재사용하고 싶다"는 생각이 들면, 그 시점에 그냥 "이것을 스킬로 만들어줘(Turn this into a skill)"라고 말하는 것이다. 그러면 Claude가 지금까지의 전체 워크플로를 통째로 캡처해서 스킬로 만들어 준다.</p>
+<p>둘째는, 스킬로 만들 작업이 이미 명확하다면 새 대화를 열어 skill creator를 불러온 뒤 "스킬 만드는 것 좀 도와줘"라고 요청하는 방식이다. 그러면 skill creator가 몇 가지 단계를 거치며 원하는 결과물이 정확히 나오도록 안내한다. 구체적으로는 "이 스킬이 Claude에게 무엇을 하게 해야 하는가?", "언제 트리거되어야 하는가?"(예: 초록을 언급하거나, 초록을 생성하거나, 초록을 분석할 때마다 실행)를 묻고, 그다음 이것이 완전히 새로운 스킬인지 아니면 기존 스킬을 업로드해서 개선하는 것인지도 물어본다. 원하는 결과가 아니라면 실제 스킬의 마크다운 내용에 직접 들어가서 원하는 부분을 하드코딩하듯 수정할 수도 있다.</p>
+<h2>핵심 키워드/용어</h2>
+<ul>
+<li><strong>스킬(Skill)</strong>: 특정 작업을 위해 Claude에게 제공하는 표준 운영 절차(SOP) 형태의 매우 긴 단계별 프롬프트. 재현 가능하고 원하는 형태의 출력을 얻기 위해 사용한다. Anthropic이 2025년 10월 16일 정식 발표했다.</li>
+<li><strong>Agent Skills 오픈 스탠다드</strong>: 2025년 12월 18일 <code>agentskills.io</code>를 통해 공개된 스킬 형식 명세로, Claude 외 다른 플랫폼에서도 동일한 형식의 스킬을 쓸 수 있게 한다.</li>
+<li><strong>skill.md / SKILL.md</strong>: 스킬 패키지(폴더 또는 zip)에 반드시 포함되어야 하는 마크다운 파일로, 스킬의 지시사항 본문이 담긴다.</li>
+<li><strong>Consensus</strong>: 학술 논문 검색·요약에 특화된 서비스로, MCP 커넥터와 3종의 사전 제작 스킬(문헌 리뷰 헬퍼, 커리큘럼 개발, 연구비 조사)을 제공한다.</li>
+<li><strong>MCP(Model Context Protocol) 커넥터</strong>: Claude에 Consensus 같은 외부 서비스를 연결해 도구/데이터를 쓸 수 있게 해주는 연결 방식. 설정 → 커넥터에서 커스텀 커넥터로 추가한다.</li>
+<li><strong>skill-creator</strong>: Anthropic 공식 저장소(<code>anthropics/skills</code>)가 기본 제공하는 메타 스킬로, Create·Eval·Improve·Benchmark 네 모드를 통해 새 스킬 제작·평가·개선을 돕는다. Consensus와는 무관한 Claude 기본 기능이다.</li>
+<li><strong>peer review assistant</strong>: Steven Turner가 만들어 <code>github.com/stephenturner/skill-peer-review-assistant</code>에 공개한 스킬. 논문 원고를 입력하면 Consensus에서 4~6회 순차 검색을 수행해 배경 주장 검증, 인용 공백 분석, 방법론 평가를 포함한 Word 형식의 모의 동료심사 보고서(감사 로그 포함)를 생성한다.</li>
+<li><strong>Phase(단계) 구조</strong>: 문헌 리뷰 스킬처럼, 스킬 내부가 Phase 1 → Phase 2 → Phase 3(예: 요약 작성, 논의 질문 도출) 식으로 순차 워크플로로 짜여 있는 구조.</li>
+</ul>
+<h2>언급된 링크·자료</h2>
+<ul>
+<li>Consensus MCP 페이지 (Claude용 스킬 다운로드 섹션 포함) — 영상 내 화면으로만 소개, 별도 URL 언급 없음</li>
+<li>GitHub의 "research skills for Claude code" 저장소 — 화면으로만 소개</li>
+<li>Steven Turner의 peer review assistant 스킬: <a href="https://blog.stephenturner.us/p/claude-skill-peer-review-consensus">github.com/stephenturner/skill-peer-review-assistant</a></li>
+<li>Anthropic 공식 skill-creator: <a href="https://github.com/anthropics/claude-plugins-official/blob/main/plugins/skill-creator/skills/skill-creator/SKILL.md">github.com/anthropics/claude-plugins-official</a></li>
+<li>Claude Skills 공식 소개: <a href="https://support.claude.com/en/articles/12512176-what-are-skills">support.claude.com – What are skills?</a></li>
+<li>Claude Skills 발표 타임라인: <a href="https://www.verdent.ai/guides/claude-skills-announcement-news">Verdent – Claude Skills: Launch Timeline &amp; Technical Overview</a></li>
+<li>Consensus 문헌 리뷰 스킬 상세: <a href="https://www.skillsdirectory.com/skills/k-dense-ai-literature-review">skillsdirectory.com – Literature Review Claude Skill</a></li>
+</ul>
+  </div>
+  <footer>개인 학습용 자료</footer>
+</div>
+</body>
+</html>
