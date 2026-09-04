@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>"코드를 이해하는 것"이 새로운 병목입니다</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --card-bg: #ffffff;
+    --text: #1f2328;
+    --text-dim: #5b6168;
+    --border: #e4e1da;
+    --accent: #2b6cb0;
+    --accent-soft: #eaf2fb;
+    --code-bg: #f2f0eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17181a;
+      --card-bg: #202225;
+      --text: #e7e6e3;
+      --text-dim: #a2a6ab;
+      --border: #33363a;
+      --accent: #6fa8dc;
+      --accent-soft: #1e2b3a;
+      --code-bg: #26282b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+  header.page-header {
+    margin-bottom: 28px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 18px;
+  }
+  header.page-header h1 { font-size: 1.5rem; line-height: 1.4; margin: 0 0 8px; }
+  header.page-header .meta { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 4px; }
+  header.page-header .meta a { color: var(--accent); }
+  .content h2 { font-size: 1.15rem; color: var(--accent); margin-top: 2.2em; }
+  .content h3 {
+    font-size: 1.02rem;
+    margin-top: 1.8em;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+  }
+  .content p { font-size: 0.96rem; }
+  .content ul, .content ol { font-size: 0.96rem; padding-left: 22px; }
+  .content li { margin-bottom: 6px; }
+  .content code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+  .content pre { background: var(--code-bg); padding: 12px 16px; border-radius: 8px; overflow-x: auto; }
+  .content blockquote {
+    margin: 0;
+    padding: 8px 14px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 4px;
+  }
+  .content a { color: var(--accent); }
+  .content strong { color: var(--accent); }
+  footer { text-align: center; font-size: 0.75rem; color: var(--text-dim); margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page-header">
+    <h1>"코드를 이해하는 것"이 새로운 병목입니다</h1>
+    <div class="meta"><a href="https://www.youtube.com/watch?v=x3e_Yl4NNHY" target="_blank" rel="noopener">원본 보기</a></div>
+    <div class="meta">발표자: Geoffrey Litt (Notion)</div>
+  </header>
+  <div class="content">
+<h1>"코드를 이해하는 것"이 새로운 병목입니다 — Geoffrey Litt (Notion) 강연 정리 (보강판)</h1>
+<ul>
+<li>영상: https://www.youtube.com/watch?v=x3e_Yl4NNHY</li>
+<li>발표자: <strong>Geoffrey Litt</strong>, Notion의 디자인 엔지니어 (design engineer, 2025년 9월 합류)</li>
+<li>컨퍼런스: AI Engineer World's Fair, "Coding and developer tools" / "Industry applications" 트랙</li>
+<li>발표 제목: "Understanding is the new bottleneck"</li>
+</ul>
+<blockquote>
+<p><strong>보강 노트</strong>: 영상의 자동 생성 자막에는 발표자 이름이 "Jeffrey Litt"로 표기되어 있으나, 실제로는 <strong>Geoffrey Litt</strong>(지오프리 리트)가 정확한 이름입니다. 그는 이 강연과 동일한 제목의 글을 자신의 블로그에도 게시했습니다: <a href="https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck">Understanding is the new bottleneck</a> (2026-07-02). 이 보강판은 자막 정리본에 이 블로그 글 및 관련 외부 자료를 교차 확인해 추가한 내용입니다.</p>
+</blockquote>
+<h2>1. 개요</h2>
+<p>Notion의 디자인 엔지니어 Geoffrey Litt는 이 강연에서 "AI 에이전트가 코드를 대신 써주는 시대에도 인간이 코드를 이해하는 일은 여전히 중요한가"라는 질문을 던진다. 그는 청중에게 손을 들어보게 하는 방식으로 의견이 갈린다는 것을 보여준 뒤, "이해"의 목적을 단순히 에이전트의 결과물을 검증(correctness checking)하는 것으로 좁게 보는 통념이 틀렸다고 주장한다. 그의 핵심 주장은 이해의 진짜 목적은 "참여하기 위한 이해(understanding to participate)"이며, 검증 능력은 에이전트가 점점 더 잘하게 되지만 다음 아이디어를 떠올리고 능동적으로 프로젝트에 기여하는 능력은 인간이 축적한 이해에서만 나온다는 것이다. 이를 뒷받침하기 위해 그는 교육학(education)에서 영감을 얻은 세 가지 실천법 — 설명(explanations), 마이크로월드(microworlds), 공유 공간(shared spaces) — 을 자신의 실제 워크플로 사례와 함께 소개한다.</p>
+<h2>2. 주제별 상세 정리</h2>
+<h3>왜 이해가 필요한가 — "검증을 위한 이해" 대 "참여를 위한 이해"</h3>
+<p>발표자는 많은 사람들이 "왜 인간이 여전히 코드를 이해해야 하는가"라는 질문에 대해 은연중에 잘못된 답을 하고 있다고 지적한다. 흔한 답은 "에이전트가 가끔 멍청한 짓을 하니까, 인간이 감시자로서 정확성을 검증해야 한다"는 것이다. "코드 리뷰가 새로운 병목이다"라는 말을 들을 때 사람들 머릿속에 가장 먼저 떠오르는 것도 이 정확성 체크(correctness checking)라고 그는 말한다. 정확성에는 스펙 문서와 일치하는지, 프로덕션을 망가뜨리지 않는지, 아키텍처가 잘 짜였는지 등 여러 정의가 있지만, 결국 모두 "엄지척/엄지다운"식의 이분법적 판단으로 귀결된다는 것이다.</p>
+<p>문제는 에이전트들도 이런 질문을 점점 더 잘 스스로에게 던질 수 있게 되고 있다는 점이다. 적절한 검증 루프(verification loop)를 부여하면, 시간이 지날수록 정확성 검증에서 인간이 맡는 역할은 줄어든다. 발표자는 이 흐름 자체를 싫어하지 않는다고 말한다 — 자신이 원하는 바를 명확히 전달했을 때 에이전트가 정확하게 해낸다면 오히려 반가운 일이라는 것이다. 문제는 사람들이 여기서 한 걸음 더 나아가 "에이전트가 점점 똑똑해지니 우리는 이제 이해할 필요가 없다, 루프에서 빠져나와도 된다"고 결론짓는 데 있다. 발표자는 여기서 사람들이 정말 중요한 무언가를 놓치고 있다고 강조한다.</p>
+<p>그가 제시하는 더 깊은 이유는 "참여하기 위한 이해(understanding to participate)"다. 프로젝트는 하나의 루프가 아니라 연속된 루프들의 흐름이며, 에이전트의 작업 결과를 리뷰하고 그 루프에 참여할 때 인간은 무언가를 이해하게 되고, 그 이해가 다음 루프, 또 다음 루프로 이어지는 아이디어의 기반이 된다는 것이다. 즉 현재 상황에 대한 이해가 다음 창의적 아이디어를 낼 수 있는 토대이며, 이것이 프로젝트에서 능동적이고 창조적인 참여자가 되는 조건이라는 논리다. 그의 블로그 글에서는 이 구분을 "understanding to verify(검증을 위한 이해)"와 "understanding to participate(참여를 위한 이해)"라는 명확한 이분법으로 정리하고 있으며, 후자를 "다음에 무엇을 해야 할지 제안할 수 있을 정도의 정신 모델(mental model)을 갖는 것"이라고 정의한다. AI 이전에도 사람들은 어떤 시스템을 깊이 이해하고 있을 때와 몇 단계 떨어져 있을 때 떠올리는 아이디어의 질이 다르다는 것을 경험적으로 느껴왔다고 그는 덧붙인다. 머릿속에 풍부한 개념적 구조(rich conceptual structures)를 갖고 있으면 매번 에이전트나 다른 사람에게 물어보러 나가지 않고도 그 구조들을 빠르게 유연하게 재조합할 수 있고, 이것이 창의적 도약(creative leap)을 가능케 한다는 것이다.</p>
+<p>이 논지를 뒷받침하는 개념으로 그는 "인지 부채(cognitive debt)"를 소개한다. 이는 캐나다 빅토리아 대학교(University of Victoria)의 소프트웨어 공학 학자 <strong>Margaret-Anne Storey</strong>가 제시한 개념으로(자막에는 "Margaret Stories"로 잘못 표기됨), Simon Willison도 자신의 블로그 글 <a href="https://simonwillison.net/2026/Feb/15/cognitive-debt/">"How Generative and Agentic AI Shift Concern from Technical Debt to Cognitive Debt"</a>에서 다룬 바 있다. Storey의 정의에 따르면 기술 부채(technical debt)는 "코드 자체의 속성"인 반면, 인지 부채는 "개발자의 머릿속에 존재하는 부채"다 — 코드 자체는 깨끗하고 테스트도 잘 되어 있어도, 그것을 만든 사람이 더 이상 시스템을 온전히 설명할 수 없다면 인지 부채가 쌓인 것이다. Storey는 자신이 지도한 학생 팀의 사례를 예로 든다: 프로젝트 7~8주차에 접어들자 팀은 아주 간단한 수정조차 하지 못하는 상황에 부닥쳤는데, 표면적으로는 "코드가 지저분해서"라고 생각했지만 실제 원인은 팀 전체가 "왜 이런 설계 결정을 내렸는지, 시스템이 어떻게 작동하는지"를 더 이상 설명할 수 없었기 때문이었다. 즉 생성형 AI로 코드를 빠르게 만들어낼 때 기술적 품질 자체는 높을 수 있지만, 그 코드에 대한 팀의 공유된 이해가 파편화되면서 이후의 변경과 의사결정이 극도로 어려워질 수 있다는 것이다. 발표자는 기술 부채처럼 인지 부채도 처음엔 별문제 없이 넘어갈 수 있지만, 이해가 계속 저하되면 결국 대가를 치르게 된다고 설명한다. "바이브 코딩(vibe coding)"을 하다가 어느 순간 "지금 무슨 일이 벌어지고 있는지 전혀 모르겠다, 더 이상 참여할 수가 없다"는 것을 깨닫는 순간이 바로 인지 부채가 쌓인 결과라고 그는 말한다.</p>
+<h3>이해의 방법론을 교육학에서 빌려오기</h3>
+<p>"어떻게 이해할 것인가"라는 질문에 답하기 위해 발표자는 한 단계 더 근본적인 질문 — "우리는 애초에 무언가를 어떻게 이해하는가?" — 로 되돌아간다. 그는 이것이 인류 최초의 질문이 아니라, 바로 "교육학(education)"이라는 하나의 학문 분야가 오랫동안 다뤄온 주제라는 점을 상기시킨다. 교육이라고 하면 지루한 강의실의 나쁜 기억을 떠올릴 수 있지만, 교육학에서 만들어진 최고의 아이디어들을 가져와 "루프 안에 머물며 이해하기"에 활용할 수 있다는 것이 그의 제안이다. 이로부터 세 가지 기법 — 설명(explanations), 마이크로월드(microworlds), 공유 공간(shared spaces) — 이 도출된다.</p>
+<h3>기법 1 — 설명(Explanations): "explain diff" 스킬</h3>
+<p>에이전트가 코드를 작성할 때마다 그것은 작업 내용을 사람에게 설명할 기회이기도 하다. 가장 소박한 설명은 단순히 "코드 diff"를 보여주는 것 — 무슨 일이 일어났는지에 대한 날것의 재료일 뿐이다. 발표자는 "만약 팀을 1년 동안 보내서 이 코드 하나를 설명하기 위한 맞춤형 커리큘럼을 만들게 한다면 어떤 모습일까?"라는 질문을 던지며, 이것이 매우 생산적인 질문이라고 말한다. 이 물음에서 나온 결과물이 그가 만든 "explain-diff"라는 스킬로, 그와 동료들이 매일 사용하고 있다. <strong>이 스킬은 <a href="https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524">GitHub Gist</a>로 공개되어 있어 누구나 확인하고 자기 것으로 만들 수 있다.</strong></p>
+<p>예시로 그는 자신이 만들고 있는 "선(禪) 정원을 그리는" 스트레스 해소용 비디오 게임을 든다. 게임의 시점을 탑다운(top-down)에서 아이소메트릭(isometric)으로 바꾸는 코드 변경이 필요했는데, 이 스킬을 실행하면 HTML이나 마크다운 형태의 "코드 설명 문서(code explainer doc)"가 생성된다. 그는 이를 Notion 페이지로 만드는데, 업무 도구이기도 하지만 동료들이 코멘트를 달며 협업할 수 있기 때문이다. 문서 구조는 다음 원칙을 따른다.</p>
+<ol>
+<li><strong>배경(Background)부터 시작한다</strong> — 변경 사항이 무엇인지가 아니라, 먼저 "이 시스템이 어떻게 작동하는지"부터 가르친다. 어떤 게임 엔진을 쓰는지, 좌표계는 무엇인지, 서브시스템은 무엇인지 등을 먼저 설명해 이해를 위한 발판을 마련한다. 이미 아는 내용이면 건너뛸 수 있도록 개인화도 가능하다.</li>
+<li><strong>직관을 세부사항보다 먼저(Intuition before details)</strong> — 코드를 보기 전에 "이 커밋의 목표는 2D 그리기 트릭만으로 정원을 3차원처럼 느껴지게 만드는 것"과 같이, 잘 쓰인 커밋 메시지보다 한 걸음 더 깊은 수준으로 핵심(essence)과 예시를 먼저 전달한다. 이것이 좋은 수학 교사들이 하는 방식이라고 그는 언급한다.</li>
+<li><strong>인터랙티브 도표(Interactive figures)</strong> — 필요한 곳에서는 직접 만지고 실험해볼 수 있는 요소를 제공한다. 위 예시에서는 바위(rock)를 그리는 방식이 바뀌었는데, 실제로 화면 속 바위를 드래그해보면 좌표와 페인팅의 Z 레이어가 어떻게 바뀌는지 볼 수 있다. 이 데모는 Notion이 그날 아침 막 출시한 "HTML 블록" 기능을 활용한 것으로, 에이전트가 Notion 페이지 안에 인터랙티브 시뮬레이션을 직접 넣을 수 있게 됐다. 다만 그는 인터랙티브 요소를 남용하면 이해를 돕기보다 오히려 "슬롭(slop, 저품질 콘텐츠)"이 될 수 있으므로 신중하게 써야 한다고 경고한다.</li>
+<li><strong>리터레이트 코드 diff(Literate code diffs)</strong> — 마지막으로 실제 코드를 보여주되, 파일들을 순서 없이 나열하지 않는다. 각 파일 전에 무슨 일이 일어나는지 산문으로 설명하며, 올바른 순서로 이야기를 풀어낸다. 이렇게 누적된 설명은 날것의 diff보다 훨씬 따라가기 쉽다. 그는 이 설명 문서를 인쇄해서 카페에 가져가 읽기도 한다고 말하며, "예전에는 컴퓨터/IDE에 붙어 있어야 했던 과정을, 이제는 AI 덕분에 카페에서 PR에 관한 교과서를 읽듯이 할 수 있다"는 아이러니가 흥미롭다고 덧붙인다.</li>
+</ol>
+<h3>이해를 검증하기 — 퀴즈와 스페이스드 리피티션(spaced repetition)</h3>
+<p>읽는 것은 어렵고, 사람은 게으르다는 문제가 남는다. 발표자는 자신이 PR을 다 읽고 이해했다고 생각했지만 동료의 아주 기본적인 질문에 답하지 못했던 경험을 이야기한다 — 스스로를 속이고 있었던 것이다. 이 문제를 다시는 겪지 않기 위해 그는 연구자 <strong>Andy Matuschak</strong>의 "책은 작동하지 않는다(Books don't work)"라는 아이디어에서 영감을 얻는다. 책을 읽고도 이해하지 못했다는 사실 자체를 깨닫기 어렵다는 뜻이다. Matuschak과 협업자 <strong>Michael Nielsen</strong>은 2019년 발표한 에세이 <a href="https://numinous.productions/ttft">"How can we develop transformative tools for thought?"</a>에서, 실제로 읽은 내용을 기억하는지 확인하는 인터랙티브 스페이스드 리피티션 퀴즈를 텍스트 안에 내장하는 실험을 소개했다. 이 아이디어를 실제로 구현한 프로토타입이 양자역학을 다루는 인터랙티브 글 <strong><a href="https://quantum.country/">"Quantum Country"</a></strong>로, 글을 읽는 도중 플래시카드(flashcard) 형태의 퀴즈가 삽입되어 있고, 이후에도 이메일로 계속 퀴즈를 보내 장기 기억을 유지시키는 방식으로 동작한다. 두 사람은 이 에세이에서 좋은 플래시카드를 쓰는 일 자체가 상당한 기술과 시간이 필요한, 그러나 대부분의 사람들이 잘 못 하는 "열린 스킬(open-ended skill)"이라는 점도 강조했다.</p>
+<p>발표자는 이를 자신의 코드 설명 문서에 적용해, 문서 맨 아래에 중간 난이도의 5문항 퀴즈를 넣는다. 그의 규칙은 "에이전트가 작성한 코드에 대한 퀴즈를 통과하지 못하면 동료에게 리뷰를 보내지 않는다"는 것이다. 사소해 보일 수 있지만, 실제로 이 퀴즈가 자신이 이해하지 못했다는 사실을 깨닫게 해준 경우가 놀랄 만큼 많았다고 그는 말한다. 그는 이를 "속도 조절기(speed regulator)"에 비유한다 — AI 시대에는 모든 것이 "더 빨리, 더 빨리"를 부추기지만, 정확성의 속도뿐 아니라 이해의 속도로도 나아가고 있는지 확인하는 장치가 바로 이 퀴즈라는 것이다. 그는 이 스킬(explain-diff)을 GitHub Gist로 공개했다고 밝히며, HTML 출력 버전과 Notion 출력 버전 두 가지를 제공한다고 안내한다.</p>
+<h3>기법 2 — 마이크로월드(Microworlds): Seymour Papert의 "매스랜드(Mathland)"</h3>
+<p>두 번째 기법은 교육자 <strong>Seymour Papert</strong>에게서 영감을 얻은 마이크로월드다. Papert는 MIT 미디어랩의 전신 격인 연구 그룹에서 활동한 교육공학의 선구자로, 1960~80년대에 아이들을 위한 프로그래밍 언어 <strong>Logo</strong>와, 그 언어로 제어하는 "터틀(turtle)" 로봇/화면 커서를 개발한 인물로 널리 알려져 있다. 그는 "매스랜드(Mathland)에 살기"라는 아이디어를 제시했는데, 논리는 이렇다 — 아이들은 프랑스에서 살면서 프랑스어를 배운다. 그렇다면 그냥 그 안에 있는 것만으로 수학을 직관적으로 배울 수 있는 "매스랜드"는 없을까? 이 아이디어에서 그는 아이들이 프로그래밍해서 그림을 그리게 하는 "터틀(turtle)"이라는 로봇을 만들었다. 핵심은 로봇 자체가 아니라, 그 프로그래밍 과정을 통해 아이들이 실제로 수학을 배우고 "변화한다"는 데 있다.</p>
+<p>발표자는 이 아이디어를 코드 이해에 적용한 두 가지 사례를 든다. 첫 번째는 작년에 학습 목적으로 프로그래밍 언어 Prolog(데이터베이스 쿼리 언어와 비슷한 개념)의 인터프리터를 직접 구현하려던 경험이다. Prolog의 여러 구성 요소는 위키피디아에서 읽으면 매우 복잡해 보이지만, 실제로 이해하고 나면 "어, 이거 그렇게 어려운 게 아니었잖아. 그냥 그렇게 읽어서 어렵게 느껴졌던 거네"라는 생각이 드는 경우가 많았다고 한다. 그래서 그는 Claude에게 자신의 인터프리터 내부 구현을 시각화하는 "마이크로월드"를 만들게 했다. 이것은 인터프리터가 스텝 단위로 실행되는 타임라인을 스크러빙하며 매 단계의 모든 상태(스택, 규칙 적용 과정 등)를 시각화하는 디버거이자 일회성(ephemeral) UI였다. 이를 통해 "후드를 열고" 내부에서 무슨 일이 벌어지는지 직접 느낄 수 있었고, 실제로 버그를 고치는 데도 사용했다. 타임라인에 자신을 위한 코멘트를 남기는 기능도 넣어, 당시 무슨 생각을 했는지 기억할 수 있게 했다. 좁은 범위의 버그를 고치는 것을 넘어, 버그를 고치는 과정 자체에서 "기계에 대한 감각(feel for the machine)"을 얻었다는 점이 핵심이다. 그는 단순히 에이전트에게 버그를 고쳐달라고 시켰다면 이런 주변시야(peripheral vision)를 얻지 못했을 것이라고 강조한다.</p>
+<p>두 번째 사례는 개인 웹사이트를 한 프레임워크에서 다른 프레임워크로 마이그레이션한 경험이다. 처음에는 Claude에게 "마이그레이션 스크립트를 짜달라"고 요청했고, 스크립트는 작동하는 것처럼 보였지만 그것을 읽어봐도 "무슨 일이 일어나는지 감이 안 잡힌다, 파일들이 여기저기로 이동한 것 같다"는 느낌만 들었다. 그래서 그는 "내가 직접 포팅하는 비디오 게임처럼 만들어달라"고 요청했다. 결과물은 왼쪽에 기존 웹사이트, 오른쪽에 새 웹사이트를 두고, "명령 센터(command center)" 형태의 UI에서 버튼을 눌러 다음, 다음, 다음으로 진행하면서 매 단계마다 어떤 명령이 실행되는지, 새 웹사이트가 어떻게 단계별로 만들어지는지 보여주는 인터페이스였다. 파일 트리도 표시되어 파일이 이동하는 과정을 눈으로 볼 수 있었다. 이는 마치 직접 수작업으로 마이그레이션을 한 것과 비슷한 효과를 주면서도, 실제로는 버튼만 클릭하면 되는 것이었다 — 즉 반복적으로 직접 작업하는 것의 이점을 그 고통 없이 얻은 셈이다. 이 파트의 핵심 메시지는 "에이전트는 코드를 이해하도록 도와주는 코드를 짤 수 있다"는 것이며, 목표는 출시할 소프트웨어를 만드는 게 아니라 우리를 위한 작은 마이크로월드, 즉 "매스랜드"의 시뮬레이션을 만드는 데 있다는 것이다.</p>
+<h3>기법 3 — 공유 공간(Shared Spaces): 팀 차원의 집단적 이해</h3>
+<p>앞의 두 기법이 개인의 이해(solo understanding)에 관한 것이었다면, 세 번째 기법은 팀 단위의 도전 과제를 다룬다. 팀 전체가 함께 이해해야 진정으로 아이디어를 주고받으며 창의적으로 협업(jam)할 수 있다는 것이다. Notion에서는 이 문제를 깊이 고민하고 있으며, 나와 타인 사이에 존재하는 "공유된 이해(shared understanding)"가 효과적인 소통을 가능케 한다고 믿는다고 발표자는 말한다. 시스템의 각 부분, UI 요소, 개념에 대한 이름을 공유하는 것도 여기에 포함된다. Notion 팀은 협업 도구가 어떻게 "집단적 이해(collective understanding)"를 가능하게 할 수 있을지 고민하고 있으며, 다음과 같은 것들을 실험 중이라고 소개한다.</p>
+<ul>
+<li><strong>멀티플레이어 채팅 스레드</strong>: 여러 명의 사람과 여러 에이전트가 함께 참여하는 대화 스레드. 예를 들어 발표자가 제품 매니저(PM) 동료에게 "이 기능에 대해 사용자들이 뭘 요청하고 있나요?"라고 물었을 때, PM이 "모르겠다, 다른 에이전트에게 물어보자"고 하면 그 에이전트가 대화에 함께 들어와 답한다. 각자 자기 에이전트와만 대화하는 대신 공유된 공간에서 서로의 커뮤니케이션을 볼 수 있다는 것이 핵심이며, 발표자는 이를 "1대1 대화에서 슬랙 채널로 옮겨가는 것"에 비유한다. 더 많은 행동을 함께 목격하게 되고, 그 결과 함께 이해하게 된다는 것이다.</li>
+<li><strong>함께 이야기할 수 있는 문서</strong>: Claude가 만들어준 계획(plan) 문서에 궁금한 점이 있으면, 로컬 컴퓨터가 아니라 협업 공간 안에 있기 때문에 바로 코멘트를 남길 수 있고, 팀원이 그 코멘트에 답하며 그 자리에서 논의를 이어갈 수 있다.</li>
+</ul>
+<p>발표자는 지난주 Notion이 코딩 에이전트(Claude, Cursor)를 Notion 안으로 직접 가져올 수 있는 기능을 출시했다고 언급하며, Notion 팀 스스로도 실제로 Notion 안에서 코드를 상당 부분 작성한다고 밝힌다. 이유는 바로 공유 공간에 있는 것 자체가 매우 가치 있기 때문이라는 것이다.</p>
+<h3>마무리 — Alan Kay와 "모든 연령대 어린이를 위한 개인용 컴퓨터"</h3>
+<p>발표자는 강연을 마무리하며 처음의 질문으로 돌아간다. 처음엔 "인간이 코드가 어떻게 동작하는지 이해하는 것이 여전히 중요하다"고 말했지만, 실제로는 그보다 훨씬 큰 이야기 — "인간이 모든 것이 어떻게 동작하는지 이해하는 것이 여전히 중요하다"는 이야기라고 확장한다. 이는 지금 시대에 의문시되고 있는 가치이며, 우리가 적극적으로 지켜내야 할 것이라고 그는 말한다. 그리고 이것이 새로운 싸움이 아니라 이 분야(컴퓨팅)의 기원으로까지 거슬러 올라가는 오래된 싸움이라는 점을 지적한다.</p>
+<p>그는 개인용 컴퓨팅의 선구자이자 현대 GUI의 공동 발명자인 <strong>Alan Kay</strong>를 언급한다. Kay는 제록스 PARC(Xerox PARC) 재직 시절인 1972년, 즉 강연 시점 기준 약 50여 년 전에 ACM 연례 컨퍼런스에서 <strong>"A Personal Computer for Children of All Ages"</strong>라는 매우 선견지명이 있는 논문을 발표했다. 이 논문은 오늘날 노트북과 태블릿의 원형이 된 개념인 "다이나북(Dynabook)" — 프로그래밍 가능한 휴대용 개인 컴퓨터 — 을 처음 제안한 것으로도 유명하다. 논문 속 삽화는 마치 아이패드로 유튜브를 보는 두 아이의 모습처럼 보이지만, 실제로 Kay가 그린 비전은 유튜브가 아니라 "아이들이 함께 비디오 게임을 프로그래밍하고 다시 프로그래밍하면서, 그 과정에서 물리학을 배우는" 모습이었다. 즉 요점은 컴퓨터 자체가 아니라 아이들이었고, 컴퓨터의 목적은 인간을 한 단계 성장시키는 것(level us up)이었다는 것이다. Kay는 어느 순간 컴퓨터가 이 비전에서 벗어나(detoured) 버렸다는 이야기를 여러 차례 해왔는데, 발표자는 지금이 바로 그 비전을 되찾아올 흥미로운 시점일 수 있다고 말한다.</p>
+<p>발표자는 이를 밈(meme) 형태로도 요약한다 — AI 시대에 많은 사람들이 "코드는 이제 공짜다. 개념을 이해하기 위한 일회성 UI와 동적 시뮬레이션을 만들 수 있고, 디버거와 놀이터(playground)를 만들 수 있다"는 사실에 눈을 뜨고 있다는 것이다. 그는 이것이 사실 새로운 아이디어가 아니라 애초부터 목표였던 것이라고 말하며, 그가 낙관적으로 보는 지점은 이것이다 — "무언가가 어떻게 동작하는지 이해하는 것은 여전히 매우 중요하며, 올바른 도구와 올바른 마음가짐, 올바른 창의성이 있다면 우리는 그 어느 때보다 더 잘 이해할 수 있다"는 것이다. AI를 통해 우리는 스스로를 루프 밖으로 빼내는 것이 아니라, 오히려 그 어느 때보다 더 깊이 루프 안에 자신을 위치시킬 수 있다는 것이 발표자의 마지막 메시지이며, 이는 업계 전체가 함께 풀어가야 할 흥미로운 과제라고 강연을 맺는다.</p>
+<h2>3. 핵심 키워드/용어</h2>
+<ul>
+<li><strong>Understanding to verify vs. understanding to participate (검증을 위한 이해 vs. 참여를 위한 이해)</strong>: 코드 이해의 목적을 단순히 에이전트 결과물의 정확성을 확인하는 것으로 좁게 볼 것이 아니라, 다음 아이디어를 떠올리고 프로젝트에 능동적으로 기여하기 위한 토대로 봐야 한다는 발표자의 핵심 구분. 후자는 "다음에 무엇을 해야 할지 제안할 수 있을 정도의 정신 모델을 갖는 것"으로 정의된다.</li>
+<li><strong>Cognitive debt (인지 부채)</strong>: 기술 부채(technical debt)에서 착안한 개념으로, 소프트웨어 공학 학자 <strong>Margaret-Anne Storey</strong>(University of Victoria)가 제시했고 Simon Willison도 블로그에서 다뤘다. 기술 부채가 "코드에 쌓이는 부채"라면, 인지 부채는 "개발자의 머릿속에 쌓이는 부채"라는 점이 핵심 차이다.</li>
+<li><strong>Explain diff / explain-diff (익스플레인 디프)</strong>: 발표자가 만들어 <a href="https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524">GitHub Gist</a>로 공개한 스킬로, 코드 diff를 단순 나열하는 대신 배경 설명 → 직관 → 인터랙티브 도표 → 리터레이트 코드 diff 순서로 구성된 "코드 설명 문서"를 자동 생성한다.</li>
+<li><strong>Literate code diffs (리터레이트 코드 diff)</strong>: 파일들을 순서 없이 나열하는 대신, 각 파일 앞에 산문으로 맥락을 설명하며 올바른 순서로 코드 변경을 풀어서 전달하는 방식.</li>
+<li><strong>Books don't work (책은 작동하지 않는다)</strong>: 연구자 Andy Matuschak의 표현으로, 책을 읽고도 이해하지 못했다는 사실 자체를 깨닫기 어렵다는 문제의식. Michael Nielsen과 함께 2019년 에세이 <a href="https://numinous.productions/ttft">"How can we develop transformative tools for thought?"</a>에서 인터랙티브 스페이스드 리피티션 퀴즈 아이디어를 제시했고, 그 프로토타입이 물리학 글 <a href="https://quantum.country/">Quantum Country</a>다.</li>
+<li><strong>Speed regulator (속도 조절기)</strong>: 발표자가 자신의 코드 이해 퀴즈를 비유한 표현. AI가 모든 것을 가속하는 상황에서, 정확성의 속도뿐 아니라 이해의 속도를 맞추기 위한 장치.</li>
+<li><strong>Microworlds / Mathland (마이크로월드 / 매스랜드)</strong>: 교육자 <strong>Seymour Papert</strong>(MIT, Logo 프로그래밍 언어와 "터틀" 로봇의 창시자)의 개념. 아이들이 프랑스에 살면서 프랑스어를 배우듯, 어떤 개념 안에 직접 "살아보는" 것으로 직관적 이해를 얻는다는 아이디어.</li>
+<li><strong>Peripheral vision (주변시야)</strong>: 좁은 버그 하나를 고치는 것을 넘어, 마이크로월드 안에서 시스템 전반에 대한 감각을 함께 얻게 되는 부수적 이해를 가리키는 표현.</li>
+<li><strong>Collective understanding (집단적 이해)</strong>: 팀 전체가 공유하는 이해로, 효과적인 커뮤니케이션과 협업의 기반이 된다는 Notion 팀의 관점. 멀티플레이어 채팅 스레드, 공동 코멘트가 가능한 문서 등이 이를 지원하는 도구로 소개됨.</li>
+<li><strong>A Personal Computer for Children of All Ages / Dynabook</strong>: Alan Kay가 1972년 제록스 PARC 재직 중 발표한 논문 제목으로, 아이들이 비디오 게임의 코드를 직접 수정하며 물리학을 배우는 비전을 담고 있다. 이 논문은 오늘날 노트북/태블릿의 원형인 "다이나북(Dynabook)" 개념을 처음 제시한 것으로도 유명하며, 컴퓨터의 목적은 인간을 한 단계 성장시키는 것(level us up)이라는 메시지의 근거로 인용됨.</li>
+</ul>
+<h2>4. 언급된 링크·자료</h2>
+<ul>
+<li>발표자 블로그 글(강연과 동일한 제목·내용): <a href="https://www.geoffreylitt.com/2026/07/02/understanding-is-the-new-bottleneck">Understanding is the new bottleneck</a> — Geoffrey Litt, 2026-07-02</li>
+<li>발표자 소개 페이지: <a href="https://ai.engineer/speakers/geoffrey-litt">AI Engineer — Geoffrey Litt</a></li>
+<li>explain-diff 스킬 소스: <a href="https://gist.github.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524">GitHub Gist</a></li>
+<li>Margaret-Anne Storey의 cognitive debt 개념을 다룬 Simon Willison 블로그 글: <a href="https://simonwillison.net/2026/Feb/15/cognitive-debt/">How Generative and Agentic AI Shift Concern from Technical Debt to Cognitive Debt</a> (원문은 <a href="https://margaretstorey.com/blog/2026/02/09/cognitive-debt/">margaretstorey.com</a>에도 게시됨)</li>
+<li>Andy Matuschak &amp; Michael Nielsen, <a href="https://numinous.productions/ttft">"How can we develop transformative tools for thought?"</a> (2019)</li>
+<li>위 에세이의 프로토타입: <a href="https://quantum.country/">Quantum Country</a> — 스페이스드 리피티션이 내장된 인터랙티브 양자역학 입문 글</li>
+<li>Alan Kay, "A Personal Computer for Children of All Ages" (1972, ACM Annual Conference) — 전문은 <a href="https://mprove.de/visionreality/media/kay72.html">mprove.de</a>, <a href="https://filiph.net/text/alan-kay-personal-computer-for-children-of-all-ages.html">filiph.net</a> 등에서 열람 가능</li>
+<li>Notion의 신규 기능: 페이지 내 HTML 블록, Notion 내 코딩 에이전트(Claude, Cursor) 연동 (강연 시점 기준 "지난주" 출시로 언급)</li>
+</ul>
+<hr />
+<p><em>이 문서는 유튜브 영상 자막(자동 생성)을 기반으로 정리한 뒤, 발표자의 동명 블로그 글 및 관련 외부 자료(Simon Willison, Andy Matuschak, Alan Kay 원문 등)를 웹 검색·조사하여 사실관계를 교차 확인하고 보강한 결과물입니다.</em></p>
+  </div>
+  <footer>개인 학습용 자료</footer>
+</div>
+</body>
+</html>
